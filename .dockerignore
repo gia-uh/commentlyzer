@@ -1,0 +1,8 @@
+Dockerfile
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.log
+.git
+backend-observatorio

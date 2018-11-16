@@ -1,0 +1,9 @@
+es_core_news_md
+.dockerignore
+Dockerfile
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.log
+.git

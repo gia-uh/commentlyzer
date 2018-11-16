@@ -1,0 +1,8 @@
+*.pyc
+CubaCrawler
+Crawler
+es_core_news_md
+serialized_opinion_classifier
+serialized_opinion_vectorizer
+*.json
+.mypy_cache/
