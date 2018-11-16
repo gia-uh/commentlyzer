@@ -23,6 +23,19 @@ def get_topten():
         'articles': articles
     })
 
+@api.route('/article/get_update/<id>')
+def method_name():
+    artt = Articles(id)
+    art = artt.to_article()
+    data = CubaDebate(art['url'])
+    cc = data.comment
+    if len(cc) > art['comments']:
+        cc = cc[art['comments']:]
+        Manager.add_comments(artt.id, cc)
+    Manager.update_last_update(artt.id)
+    article = Articles(id).to_article()
+    return jsonify(article)
+
 
 @api.route('/article/update/<id>')
 def update_article(id):
@@ -32,7 +45,7 @@ def update_article(id):
     cc = data.comment
     if len(cc) > art['comments']:
         cc = cc[art['comments']:]
-        Manager.add_comments(artt.id,cc)
+        Manager.add_comments(artt.id, cc)
     Manager.update_last_update(artt.id)
     return jsonify({'id': str(id)})
 
