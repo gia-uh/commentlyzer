@@ -19,22 +19,43 @@ stopwordsd = set(json.loads('["de", "la", "que", "el", "en", "y", "a", "los", "d
 
 @api.route('/comments/opinion/<ObjectId:id>')
 def comments_opinion(id):
+    upt = Manager.get_last_update(ObjectId(id))
+    ops = Manager.get_ops(ObjectId(id))
+    updateb = False
+    if not(ops is None):
+        if ops['last_update']==upt:
+            return jsonify(ops['opinion'])
+        else:
+            updateb = True
 
     comments = list(Manager.interval_comments(ObjectId(id), datetime.utcnow()))
     opinion = extract_opinion([comment['text'] for comment in comments])
 
     counter = Counter(opinion)
-
-    return jsonify({
+    ress = {
         'Positivo': counter['Positive'],
         'Neutro': counter['Neutral'],
         'Negativo': counter['Negative']
-    })
+    }
+    if updateb:
+        Manager.update_ops(ObjectId(id), ress, upt)
+    else:
+        Manager.inser_ops(ObjectId(id), ress, upt)
+
+    return jsonify(ress)
 
 
 @api.route('/comments/entities/<ObjectId:id>')
 def entities(id):
-    comments = list(map(lambda x: x['text'],Manager.interval_comments(ObjectId(id), datetime.now())))
+    upt = Manager.get_last_update(ObjectId(id))
+    ents = Manager.get_ents(ObjectId(id))
+    updateb = False
+    if not(ents is None):
+        if ents['last_update']==upt:
+            return jsonify({'entities': ents['entities'][:10]})
+        else:
+            updateb = True
+    comments = list(map(lambda x: x['text'],Manager.interval_comments(ObjectId(id), datetime.utcnow())))
     ents = pipe_ents_detect(comments)
     entss = set()
     for i in ents:
@@ -53,5 +74,9 @@ def entities(id):
                 j['count']['total']+=1
                 j['count'][opinion[n].lower()]+=1
     ress = list(sorted(ress,key = lambda x:x['count']['total'],reverse=True))
+    if updateb:
+        Manager.update_ents(ObjectId(id), ress, upt)
+    else:
+        Manager.inser_ents(ObjectId(id), ress, upt)
     print(ress[:10])
     return jsonify({'entities':ress[:10]})

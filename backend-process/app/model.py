@@ -11,12 +11,19 @@ class Manager:
     db = mongo.db
     articles = mongo.db["Articles"]
     comments = mongo.db["Comments"]
-    processed = mongo.db["Processed"]
+    entities = mongo.db["Entities"]
+    opinions = mongo.db["Opinions"]
 
     @staticmethod
     def update_last_update(Id: ObjectId):
         Manager.articles.update_one(
             {'_id': Id}, {"$set": {"last_update": datetime.utcnow()}}, upsert=False)
+
+    def get_last_update(Id: ObjectId):
+        r = Manager.articles.find_one({'_id': Id})
+        if not (r is None):
+            return r['last_update']
+        return None
 
     @staticmethod
     def new_entry(article: dict, comments_l: List[dict])->ObjectId:
@@ -30,19 +37,33 @@ class Manager:
         return Id
 
     @staticmethod
-    def get_to_process(Id: ObjectId, proc_type=None, get_art=True, get_com=True)->Tuple[dict, dict, dict]:
-        article = {}
-        comments = {}
-        if get_art:
-            article = Manager.articles.find({'_id': Id})
-        if get_com:
-            comments = Manager.comments.find({'super': Id})
-        processed = {'super': Id, 'type': proc_type}
-        return article, comments, processed
+    def inser_ents(Id: ObjectId, ents_l: List[dict], upadtet):
+        obj = {'entities': ents_l, 'super': Id, 'last_update': upadtet}
+        Manager.entities.insert_one(obj)
 
     @staticmethod
-    def set_processed(processed: dict):
-        Manager.processed.insert_one(processed)
+    def get_ents(Id: ObjectId):
+        return Manager.entities.find_one({'super': Id})
+
+    @staticmethod
+    def update_ents(Id: ObjectId, ents_l: List[dict], updatet):
+        Manager.entities.update_one(
+            {'super': Id}, {"$set": {"last_update": updatet, "entities": ents_l}}, upsert=False)
+
+    @staticmethod
+    def inser_ops(Id: ObjectId, op: dict, upadtet):
+        obj = {'opinion': op, 'super': Id, 'last_update': upadtet}
+        Manager.opinions.insert_one(obj)
+
+    @staticmethod
+    def get_ops(Id: ObjectId):
+        return Manager.opinions.find_one({'super': Id})
+
+    @staticmethod
+    def update_ops(Id: ObjectId, op: dict, updatet):
+        Manager.opinions.update_one(
+            {'super': Id}, {"$set": {"last_update": updatet, "opinion": op}}, upsert=False)
+
 
     @staticmethod
     def get_article(Id: ObjectId)->dict:
@@ -69,7 +90,7 @@ class Manager:
             else:
                 i['super'] = Id
                 Manager.comments.insert_one(i)
-        article = Manager.articles.find_one_or_404({'_id': Id})
+        #article = Manager.articles.find_one_or_404({'_id': Id})
         #actualiza la fecha de upadte del articulo
         #article['update_time'] = datetime.now()
 
