@@ -3,6 +3,7 @@ from flask import current_app as app
 from Crawler import CubaDebate, Crawler
 from . import api
 from ..decorators import background_tasks
+from .article import get_data
 from ..model import Manager
 import datetime
 from hashlib import sha1
@@ -20,7 +21,8 @@ def get_page():
     id = Manager.search_url(url)
 
     if id is not None:
-        return jsonify({'id': str(id)})
+        # return jsonify({'id': str(id)})
+        return get_data(str(id))
 
     data = Crawler(app.config['PROXY_CONFIG'])
     data.request(url)

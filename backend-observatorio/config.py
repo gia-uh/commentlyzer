@@ -6,6 +6,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
     AUTO_DELETE_BG_TASKS = True
+    ITSFUCKINGDEBUG = True
 
     MONGO_URI = os.environ.get('MONGO_URI') or "mongodb://localhost:27017/elchismoso"
 

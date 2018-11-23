@@ -6,17 +6,25 @@ from bson.son import SON
 from datetime import datetime
 import pymongo
 
+
 class Manager:
     mongo = mongo
     db = mongo.db
     articles = mongo.db["Articles"]
     comments = mongo.db["Comments"]
-    processed = mongo.db["Processed"]
+    entities = mongo.db["Entities"]
+    opinions = mongo.db["Opinions"]
 
     @staticmethod
     def update_last_update(Id: ObjectId):
         Manager.articles.update_one(
             {'_id': Id}, {"$set": {"last_update": datetime.utcnow()}}, upsert=False)
+
+    def get_last_update(Id: ObjectId):
+        r = Manager.articles.find_one({'_id': Id})
+        if not (r is None):
+            return r['last_update']
+        return None
 
     @staticmethod
     def new_entry(article: dict, comments_l: List[dict])->ObjectId:
@@ -30,19 +38,32 @@ class Manager:
         return Id
 
     @staticmethod
-    def get_to_process(Id: ObjectId, proc_type=None, get_art=True, get_com=True)->Tuple[dict, dict, dict]:
-        article = {}
-        comments = {}
-        if get_art:
-            article = Manager.articles.find({'_id': Id})
-        if get_com:
-            comments = Manager.comments.find({'super': Id})
-        processed = {'super': Id, 'type': proc_type}
-        return article, comments, processed
+    def inser_ents(Id: ObjectId, ents_l: List[dict], upadtet):
+        obj = {'entities': ents_l, 'super': Id, 'last_update': upadtet}
+        Manager.entities.insert_one(obj)
 
     @staticmethod
-    def set_processed(processed: dict):
-        Manager.processed.insert_one(processed)
+    def get_ents(Id: ObjectId):
+        return Manager.entities.find_one({'super': Id})
+
+    @staticmethod
+    def update_ents(Id: ObjectId, ents_l: List[dict], updatet):
+        Manager.entities.update_one(
+            {'super': Id}, {"$set": {"last_update": updatet, "entities": ents_l}}, upsert=False)
+
+    @staticmethod
+    def inser_ops(Id: ObjectId, op: dict, upadtet):
+        obj = {'opinion': op, 'super': Id, 'last_update': upadtet}
+        Manager.opinions.insert_one(obj)
+
+    @staticmethod
+    def get_ops(Id: ObjectId):
+        return Manager.opinions.find_one({'super': Id})
+
+    @staticmethod
+    def update_ops(Id: ObjectId, op: dict, updatet):
+        Manager.opinions.update_one(
+            {'super': Id}, {"$set": {"last_update": updatet, "opinion": op}}, upsert=False)
 
     @staticmethod
     def get_article(Id: ObjectId)->dict:
@@ -69,7 +90,7 @@ class Manager:
             else:
                 i['super'] = Id
                 Manager.comments.insert_one(i)
-        article = Manager.articles.find_one_or_404({'_id': Id})
+        #article = Manager.articles.find_one_or_404({'_id': Id})
         #actualiza la fecha de upadte del articulo
         #article['update_time'] = datetime.now()
 
@@ -81,6 +102,7 @@ class Manager:
 
 class Articles():
     __slots__ = ('id', 'article')
+
     def __init__(self, id):
         if isinstance(id, str):
             id = ObjectId(id)
@@ -89,7 +111,6 @@ class Articles():
 
     @staticmethod
     def topten_by_comments():
-
 
         pipeline = [
             {
@@ -124,19 +145,22 @@ class Articles():
         ans = []
         for id in articles:
             article = mongo.db.Articles.find_one({'_id': id['super']})
-            ans.append({'title': article['title'], 'id': str(id['super']), 'comments': id['count']})
+            ans.append({'title': article['title'], 'id': str(
+                id['super']), 'comments': id['count']})
 
         return ans
 
     @staticmethod
     def topten():
 
-        articles = mongo.db.Articles.find({}).sort([('last_update', pymongo.DESCENDING)]).limit(10)
+        articles = mongo.db.Articles.find({}).sort(
+            [('last_update', pymongo.DESCENDING)]).limit(10)
 
         ans = []
 
         for article in articles:
-            comments = mongo.db.Comments.find({"super": article['_id']}).count()
+            comments = mongo.db.Comments.find(
+                {"super": article['_id']}).count()
             ans.append({
                 'title': article['title'],
                 'id': str(article['_id']),
@@ -158,5 +182,6 @@ class Articles():
             'url': self.article['url'],
             'img': self.article['img'],
             'last_update': self.article['last_update'],
-            'comments': self.count_comments
+            'comments': self.count_comments,
+            'id': str(self.id),
         }
