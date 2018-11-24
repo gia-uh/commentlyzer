@@ -166,7 +166,9 @@ class Articles():
                 'id': str(article['_id']),
                 'comments': comments,
                 'last_update': article['last_update'],
-                'media': article['media']
+                'media': article['media'],
+                'img': article['img'],
+
             })
 
         return ans
