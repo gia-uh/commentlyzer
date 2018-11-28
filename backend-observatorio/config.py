@@ -15,8 +15,8 @@ class Config:
     #MONGODB_PORT = os.environ.get('MONGODB_PORT') or 27017
 
     proxy = os.environ.get('PROXY_CONFIG')
-    #PROXY_CONFIG = json.loads(proxy) if proxy else {
-    #    "http": 'http://proxy-cu.uh.cu:3128', "https":"http://proxy-cu.uh.cu:3128"}
+    PROXY_CONFIG = json.loads(proxy) if proxy else {
+        "http": 'http://h.canizares%40estudiantes.matcom.uh.cu:mecagoendios@proxy-cu.uh.cu:3128', "https": "http://h.canizares%40estudiantes.matcom.uh.cu:mecagoendios@proxy-cu.uh.cu:3128"}
     # MONGODB_USERNAME = 'webapp'
     # MONGODB_PASSWORD = 'pwd123'
     PROXY_CONFIG = json.loads(proxy) if proxy else {}

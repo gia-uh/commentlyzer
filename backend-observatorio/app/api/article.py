@@ -1,6 +1,6 @@
 from flask import request, jsonify
 from . import api
-from ..decorators import background_tasks
+from ..decorators import background
 from ..model import Manager, Articles
 from bson import ObjectId
 from datetime import datetime
@@ -38,6 +38,7 @@ def method_name():
 
 
 @api.route('/article/update/<id>')
+@background
 def update_article(id):
     artt = Articles(id)
     art = artt.to_article()
