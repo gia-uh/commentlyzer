@@ -2,17 +2,20 @@ from flask import request, jsonify
 from flask import current_app as app
 from Crawler import CubaDebate, Crawler
 from . import api
-from ..decorators import background_tasks
+from ..decorators import background_tasks, background_optional
 from .article import get_data
 from ..model import Manager
 import datetime
 from hashlib import sha1
 import logging
 import re
+from ..decorators import background
 
 sps = re.compile('  +')
 
+
 @api.route('/getpage', methods=['POST'])
+@background_optional
 def get_page():
     data = request.json
     print(data)

@@ -5,7 +5,7 @@ api = Blueprint('api', __name__)
 CORS(api)
 
 # from .fake import comments, sumarization
-from . import crawler,  article
+from . import crawler,  article, task
 
 from .fake import comments, sumarization
 # from . import comments, sumarization
