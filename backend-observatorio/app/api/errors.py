@@ -5,8 +5,12 @@ from . import api
 
 @api.errorhandler(ValidationError)
 def bad_request(e=None):
+    if isinstance(e, str):
+        msg = e
+    else:
+        msg = e.args[0]
     response = jsonify({'status': 400, 'error': 'bad request',
-                        'message': e.args[0]})
+                        'message': msg})
     response.status_code = 400
     return response
 
@@ -29,8 +33,23 @@ def method_not_supported(e=None):
 
 @api.app_errorhandler(500)  # this has to be an app-wide handler
 def internal_server_error(e=None):
-    msg = e.args[0] if e.args else 'Unknow error'
+    if isinstance(e, str):
+        msg = e
+    else:
+        msg = e.args[0] if e.args else 'Unknow error'
     response = jsonify({'status': 500, 'error': 'internal server error',
                         'message': msg})
     response.status_code = 500
+    return response
+
+
+@api.app_errorhandler(502)  # this has to be an app-wide handler
+def bad_gateway_error(e=None):
+    if isinstance(e, str):
+        msg = e
+    else:
+        msg = e.args[0] if e.args else 'Unknow error'
+    response = jsonify({'status': 502, 'error': 'bad gateway',
+                        'message': msg})
+    response.status_code = 502
     return response

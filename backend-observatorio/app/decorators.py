@@ -1,10 +1,12 @@
 import functools
-from flask import copy_current_request_context, make_response, jsonify, url_for, request
+from flask import copy_current_request_context, make_response, jsonify
+from flask import url_for, request
 from threading import Thread
-from .api.errors import internal_server_error
+from .api.errors import internal_server_error, bad_gateway_error
 import uuid
 import logging
 from .model import Manager
+from Crawler import UnreachebleURL, ProxyConfigError
 
 logger = logging.getLogger('backgroundlogger')
 
@@ -32,11 +34,19 @@ def background(f):
                 # invoke the wrapped function and record the returned
                 # response in the background_tasks dictionary
                 background_tasks[id] = make_response(f(*args, **kwargs))
+            except ProxyConfigError as e:
+                logger.error(str(e))
+                background_tasks[id] = make_response(
+                    bad_gateway_error("Server Proxy error."))
+            except UnreachebleURL as e:
+                logger.error(str(e))
+                background_tasks[id] = make_response(
+                    bad_gateway_error("URL unreacheble."))
             except Exception as e:
                 # the wrapped function raised an exception, return a 500
                 # response
                 logger.error(str(e))
-                background_tasks[id] = make_response(internal_server_error(e))
+                background_tasks[id] = make_response(internal_server_error(e.args[0]))
 
         # store the background task under a randomly generated identifier
         # and start it
@@ -48,7 +58,6 @@ def background(f):
         # return a 202 Accepted response with the location of the task status
         # resource
         logger.debug(str({'Location': url_for('api.get_task_status', id=id)}))
-        print('background')
         return jsonify({'Location': url_for('api.get_task_status', id=id), 'id': id }), 202, {'Location': url_for('api.get_task_status', id=id)}
     return wrapped
 
@@ -74,11 +83,19 @@ def background_optional(f):
                 # invoke the wrapped function and record the returned
                 # response in the background_tasks dictionary
                 background_tasks[id] = make_response(f(*args, **kwargs))
+            except ProxyConfigError as e:
+                logger.error(str(e))
+                background_tasks[id] = make_response(
+                    bad_gateway_error("Server Proxy error."))
+            except UnreachebleURL as e:
+                logger.error(str(e))
+                background_tasks[id] = make_response(
+                    bad_gateway_error("URL unreacheble."))
             except Exception as e:
                 # the wrapped function raised an exception, return a 500
                 # response
                 logger.error(str(e))
-                background_tasks[id] = make_response(internal_server_error(e))
+                background_tasks[id] = make_response(internal_server_error(e.args[0]))
 
         data = request.json
         print(data)
@@ -99,6 +116,5 @@ def background_optional(f):
         # return a 202 Accepted response with the location of the task status
         # resource
         logger.debug(str({'Location': url_for('api.get_task_status', id=id)}))
-        print('background')
         return jsonify({'Location': url_for('api.get_task_status', id=id), 'id': id}), 202, {'Location': url_for('api.get_task_status', id=id)}
     return wrapped

@@ -168,6 +168,8 @@ class Articles():
                 'last_update': article['last_update'],
                 'media': article['media'],
                 'img': article['img'],
+                "pub_date": article['pub_date'],
+                'url': article['url'],
 
             })
 
@@ -186,4 +188,6 @@ class Articles():
             'last_update': self.article['last_update'],
             'comments': self.count_comments,
             'id': str(self.id),
+            "pub_date": self.article['pub_date'],
+            'media': self.article['media']
         }

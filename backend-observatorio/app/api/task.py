@@ -1,5 +1,5 @@
 from . import api
-from flask import jsonify,url_for
+from flask import jsonify, url_for
 from flask import current_app as app
 from threading import Thread
 from .errors import not_found
