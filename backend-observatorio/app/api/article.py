@@ -14,13 +14,32 @@ def get_data(id):
 
     return jsonify(article)
 
+@api.route('/article/paginate')
+def get_topten_paginate():
+    page=int(request.args.get('page',''))
+    articles = Articles.topten_page(page)
+    na = Articles.count_articles()
+    ap = Articles.arts_per_page
+    nn = na//ap
+    rest = na % ap
+    nn += int(bool(rest != 0))
+    next = page+1
+    if next> nn:
+        next = None
+
+    return jsonify({
+        'articles': articles,
+        'pages': nn
+        'next': next
+    })
+
 
 @api.route('/article/topten')
 def get_topten():
     articles = Articles.topten()
 
     return jsonify({
-        'articles': articles
+        'articles': articles,
     })
 
 @api.route('/article/get_update/<id>')
