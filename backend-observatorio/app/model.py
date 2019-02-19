@@ -103,6 +103,7 @@ class Manager:
 class Articles():
     __slots__ = ('id', 'article')
     arts_per_page = 10
+
     def __init__(self, id):
         if isinstance(id, str):
             id = ObjectId(id)
