@@ -1,7 +1,7 @@
 version: '2'
 services:
   server:
-    build: .
+    build: ./backend-observatorio
     container_name: "prensa"
     environment:
       - MONGO_URI=mongodb://mongodb:27017/elchismoso
@@ -14,7 +14,7 @@ services:
     depends_on:
       - mongodb
   mongodb:
-    image: mongo:latest
+    image: mongo:4.0.6
     container_name: "mongodb"
     environment:
       - MONGO_DATA_DIR=/data/db
