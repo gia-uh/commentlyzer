@@ -181,7 +181,7 @@ class Articles():
         return ans
 
     @staticmethod
-    def topten_page(page):
+    def top_page(page):
 
         articles = mongo.db.Articles.find({}).sort(
             [('last_update', pymongo.DESCENDING)]).skip((page-1)*Articles.arts_per_page).limit(Articles.arts_per_page)
@@ -204,6 +204,32 @@ class Articles():
             })
 
         return ans
+
+    @staticmethod
+    def top_page_filter(page, filt):
+
+        articles = mongo.db.Articles.find({'title': {'$regex': filt, '$options': "i"}})
+        nn = articles.count()
+        articles = articles.sort(
+            [('last_update', pymongo.DESCENDING)]).skip((page-1)*Articles.arts_per_page).limit(Articles.arts_per_page)
+
+        ans = []
+
+        for article in articles:
+            comments = mongo.db.Comments.find(
+                {"super": article['_id']}).count()
+            ans.append({
+                'title': article['title'],
+                'id': str(article['_id']),
+                'comments': comments,
+                'last_update': article['last_update'],
+                'media': article['media'],
+                'img': article['img'],
+                "pub_date": article['pub_date'],
+                'url': article['url'],
+
+            })
+        return ans, nn
 
     @property
     def count_comments(self):

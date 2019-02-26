@@ -23,24 +23,29 @@ def get_data(id):
 def get_topten_paginate():
 
     # return jsonify({'funciona':1})
-    page=int(request.args.get('page',''))
-    logger.debug('page: '+str(page))
-    articles = Articles.topten_page(page)
-    na = Articles.count_articles()
-    ap = Articles.arts_per_page
-    nn = na//ap
-    rest = na % ap
-    nn += int(bool(rest != 0))
-    nextt = page+1
-    if nextt> nn:
-        nextt = None
+    page = int(request.args.get('page', '1'))
+    filt = request.args.get('filter', '')
+    # logger.debug('page: '+str(page))
+    # logger.debug('filter: '+str(filt)+'\ttype: '+str(type(filt)))
+    if not filt:
+        articles = Articles.top_page(page)
+        na = Articles.count_articles()
+        ap = Articles.arts_per_page
+        nn = na//ap
+        rest = na % ap
+        nn += int(bool(rest != 0))
+    else:
+        articles, na = Articles.top_page_filter(page, filt)
+        ap = Articles.arts_per_page
+        nn = na//ap
+        rest = na % ap
+        nn += int(bool(rest != 0))
 
-    logger.debug(articles)
+    # logger.debug(articles)
 
     return jsonify({
         'articles': articles,
         'pages': nn,
-        'next': nextt
     })
 
 
