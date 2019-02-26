@@ -8,7 +8,7 @@ CORS(api)
 from . import crawler,  article, task
 
 from .fake import comments, sumarization
-# from . import comments, sumarization
+#from . import comments, sumarization
 
 
 @api.before_request
