@@ -102,12 +102,17 @@ class Manager:
 
 class Articles():
     __slots__ = ('id', 'article')
+    arts_per_page = 12
 
     def __init__(self, id):
         if isinstance(id, str):
             id = ObjectId(id)
         self.article = mongo.db.Articles.find_one_or_404({'_id': id})
         self.id = id
+
+    @staticmethod
+    def count_articles():
+        return mongo.db.Articles.count()
 
     @staticmethod
     def topten_by_comments():
@@ -174,6 +179,57 @@ class Articles():
             })
 
         return ans
+
+    @staticmethod
+    def top_page(page):
+
+        articles = mongo.db.Articles.find({}).sort(
+            [('last_update', pymongo.DESCENDING)]).skip((page-1)*Articles.arts_per_page).limit(Articles.arts_per_page)
+
+        ans = []
+
+        for article in articles:
+            comments = mongo.db.Comments.find(
+                {"super": article['_id']}).count()
+            ans.append({
+                'title': article['title'],
+                'id': str(article['_id']),
+                'comments': comments,
+                'last_update': article['last_update'],
+                'media': article['media'],
+                'img': article['img'],
+                "pub_date": article['pub_date'],
+                'url': article['url'],
+
+            })
+
+        return ans
+
+    @staticmethod
+    def top_page_filter(page, filt):
+
+        articles = mongo.db.Articles.find({'title': {'$regex': filt, '$options': "i"}})
+        nn = articles.count()
+        articles = articles.sort(
+            [('last_update', pymongo.DESCENDING)]).skip((page-1)*Articles.arts_per_page).limit(Articles.arts_per_page)
+
+        ans = []
+
+        for article in articles:
+            comments = mongo.db.Comments.find(
+                {"super": article['_id']}).count()
+            ans.append({
+                'title': article['title'],
+                'id': str(article['_id']),
+                'comments': comments,
+                'last_update': article['last_update'],
+                'media': article['media'],
+                'img': article['img'],
+                "pub_date": article['pub_date'],
+                'url': article['url'],
+
+            })
+        return ans, nn
 
     @property
     def count_comments(self):
