@@ -2,17 +2,21 @@ version: '2'
 services:
   server:
     build: ./backend-observatorio
+    image: prensa
     container_name: "prensa"
-    environment:
-      - MONGO_URI=mongodb://mongodb:27017/elchismoso
     volumes:
-        - .:/backend-observatorio
+        - ./backend-observatorio:/backend-observatorio
+    # command: cd / && python /backend-observatorio/production.py
     ports:
       - 8000:8000
     links:
       - mongodb
     depends_on:
       - mongodb
+    environment:
+      - PYTHONPATH=/Crawler
+      - MONGO_URI=mongodb://mongodb:27017/elchismoso
+
   mongodb:
     image: mongo:4.0.6
     container_name: "mongodb"
@@ -23,4 +27,4 @@ services:
       - ./data/db:/data/db
     ports:
         - 27017:27017
-    command: mongod --smallfiles --logpath=/dev/null # --quiet
+    command: mongod #--smallfiles --logpath=/dev/null # --quiet
