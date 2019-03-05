@@ -16,6 +16,7 @@ services:
     environment:
       - PYTHONPATH=/Crawler
       - MONGO_URI=mongodb://mongodb:27017/elchismoso
+      - REAL_PROCESS=1
 
   mongodb:
     image: mongo:4.0.6
