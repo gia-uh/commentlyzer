@@ -1,0 +1,383 @@
+<template>
+    <v-container text-xs-center grid-list-md>
+        <v-slide-y-transition mode="out-in">
+            <v-layout row wrap align-center>
+                <v-flex lg12 md12 sm12 xs12>
+                    <v-card>
+                      <v-layout align-center>
+                        <v-flex lg3 md3 sm3 xs3>
+                </span>
+                <svg v-if="median==0"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.0"
+   width="64px"
+   height="64px"
+   viewBox="0 0 469.000000 448.000000"
+   preserveAspectRatio="xMidYMid meet"
+   id="svg4075"
+   sodipodi:docname="cubadebate.svg"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+  <defs
+     id="defs4079" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="3840"
+     inkscape:window-height="2053"
+     id="namedview4077"
+     showgrid="false"
+     inkscape:snap-midpoints="true"
+     inkscape:snap-to-guides="false"
+     inkscape:snap-grids="false"
+     inkscape:snap-page="true"
+     inkscape:snap-text-baseline="true"
+     inkscape:zoom="2.9748884"
+     inkscape:cx="241.23542"
+     inkscape:cy="298.66667"
+     inkscape:window-x="0"
+     inkscape:window-y="55"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4075" />
+  <metadata
+     id="metadata4063">
+Created by potrace 1.14, written by Peter Selinger 2001-2017
+<rdf:RDF>
+  <cc:Work
+     rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type
+       rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+    <dc:title></dc:title>
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+  <g
+     transform="translate(0.000000,448.000000) scale(0.100000,-0.100000)"
+     id="g4073"
+     stroke="none"
+     fill="#000000"
+     style="image-rendering:optimizeQuality">
+    <path
+       d="M2117 4339 c-94 -10 -308 -56 -387 -81 -564 -181 -1017 -568 -1269 -1081 -79 -162 -120 -275 -161 -451 -26 -110 -51 -288 -41 -299 4 -4 334 -6 734 -5 l726 3 -179 204 c-99 112 -180 205 -180 207 0 2 80 4 178 3 l177 0 55 -66 c30 -36 60 -71 66 -77 27 -29 184 -208 224 -256 25 -30 67 -79 94 -110 27 -30 51 -57 53 -59 1 -2 3 464 3 1037 0 828 -3 1042 -12 1041 -7 -1 -44 -5 -81 -10z"
+       id="path4065"
+       style="fill:#ea2222;fill-opacity:1" />
+    <path
+       d="M2520 3308 l1 -1043 27 31 c15 18 128 147 252 288 l224 256 174 0 173 0 -28 -34 c-15 -18 -75 -87 -133 -152 -58 -66 -127 -145 -154 -176 l-48 -58 737 0 737 0 -7 63 c-12 109 -54 305 -91 420 -238 736 -885 1292 -1654 1421 -47 8 -113 17 -147 21 l-63 7 0 -1044z"
+       id="path4067" />
+  </g>
+  <path
+     inkscape:connector-curvature="0"
+     d="m 211.7,427.7 c -9.4,-1 -30.79999,-5.6 -38.7,-8.1 C 116.60001,401.5 71.300003,362.8 46.100003,311.5 c -7.9,-16.2 -12.000001,-27.5 -16.1,-45.1 -2.6,-11 -5.1,-28.8 -4.1,-29.9 0.4,-0.4 33.399999,-0.6 73.399997,-0.5 l 72.6,0.3 -17.9,20.4 c -9.9,11.2 -18,20.5 -18,20.7 0,0.2 8,0.4 17.8,0.3 h 17.7 l 5.50001,-6.6 c 3,-3.6 6,-7.1 6.6,-7.7 2.7,-2.9 18.39999,-20.8 22.39999,-25.6 2.50001,-3 6.70001,-7.9 9.40001,-11 2.7,-3 5.1,-5.7 5.29999,-5.9 0.10001,-0.2 0.3,46.4 0.3,103.7 0,82.8 -0.3,104.2 -1.2,104.1 -0.7,-0.1 -4.39999,-0.5 -8.1,-1 z"
+     id="path4065-3"
+     style="fill:#ea2222;fill-opacity:1;stroke-width:0.09999999;image-rendering:optimizeQuality" />
+  <path
+     inkscape:connector-curvature="0"
+     style="stroke-width:0.09999999;image-rendering:optimizeQuality"
+     d="m 252,325.8 0.1,-104.3 2.7,3.1 c 1.5,1.8 12.8,14.7 25.2,28.8 l 22.4,25.6 h 17.4 17.3 l -2.8,-3.4 c -1.5,-1.8 -7.5,-8.7 -13.3,-15.2 -5.8,-6.6 -12.7,-14.5 -15.4,-17.6 l -4.8,-5.8 h 73.7 73.7 l -0.7,6.3 c -1.2,10.9 -5.4,30.5 -9.1,42 -23.8,73.6 -88.5,129.2 -165.4,142.1 -4.7,0.8 -11.3,1.7 -14.7,2.1 l -6.3,0.7 z"
+     id="path4067-6" />
+</svg>
+                        <samp> {{media}} {{article.last_update |  moment('from', 'now') }} </samp>
+                        </v-flex>
+                        <v-flex lg9 md9 sm9 xs9>
+                        <h1> {{article.title}} </h1>
+                        <samp> {{article.author}} </samp>
+                        </v-flex>
+                      </v-layout>
+                    </v-card>
+                </v-flex>
+
+                <v-flex class="hidden-down" lg6 md6 sm6 xs12 fill>
+                    <v-card>
+                        <v-responsive>
+                            <v-img :src="article.img" aspect-ratio="1"
+                                class="grey lighten-2" max-height="300px">
+                                <v-layout slot="placeholder"
+                                    fill-height align-center
+                                    justify-center ma-0>
+                                    <v-progress-circular
+                                        indeterminate color="grey lighten-5"></v-progress-circular>
+                                </v-layout>
+                            </v-img>
+                        </v-responsive>
+                    </v-card>
+                </v-flex>
+
+                <v-flex lg6 md6 sm6 xs12>
+                    <v-card>
+                        <v-card-text>
+                          <p>
+                            {{ summary }}
+                          </p>
+                          <a @click="gotosite(article.url)"> Para leer la noticia completa siga este link </a>
+
+                          </v-card-text>
+                    </v-card>
+                </v-flex>
+
+                <v-flex lg4 md4 sm4 xs12>
+                    <v-card height="150px">
+                        <v-card-text>
+                            <h1> Comentarios:
+                            </h1>
+                            <h1>
+                                {{article.comments}}</h1>
+                        </v-card-text>
+                    </v-card>
+
+                </v-flex>
+
+                <v-flex lg8 md8 sm8 xs12>
+                    <v-card>
+                        <v-card-title>
+                            <span> Cantidad de comentarios </span>
+                        </v-card-title>
+                        <line-chart :discrete="false" :data="timeRoute" height="100px"></line-chart>
+                    </v-card>
+                </v-flex>
+
+                <v-flex style="align-self: flex-start;" class="down" lg6 md6 sm6 xs12>
+                    <v-card>
+                        <v-card-title>
+                        </v-card-title>
+                        <v-responsive>
+                            <pie-chart :data="pieRoute" :donut="false" :options="{ 'fill': ['orange', 'blue', 'red']}"></pie-chart>
+                        </v-responsive>
+                    </v-card>
+                </v-flex>
+
+                <v-flex class="down" lg6 md6 sm6 xs12>
+                    <v-card>
+                        <v-card-title>
+                        </v-card-title>
+                        <v-responsive>
+                            <entities :items="entities"></entities>
+                        </v-responsive>
+                    </v-card>
+                </v-flex>
+
+                <social-sharing
+                      :url=actual_route
+                      title="Commentslyzer"
+                      description="Un ojo en la prensa cubana"
+                      quote="Mira lo que se comenta en cuba"
+                      hashtags="cuba,noticias"
+                      inline-template>
+      <div>
+          <network network="email">
+              <i class="fas fa-envelope"></i> Email
+          </network>
+          <network network="facebook">
+            <i class="fab fa-facebook-square"></i> Facebook
+          </network>
+          <network network="line">
+            <i class="fab fa-line"></i> Line
+          </network>
+          <network network="linkedin">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </network>
+          <network network="odnoklassniki">
+            <i class="fab fa-odnoklassniki"></i> Odnoklassniki
+          </network>
+          <network network="pinterest">
+            <i class="fab fa-pinterest"></i> Pinterest
+          </network>
+          <network network="reddit">
+            <i class="fab fa-reddit"></i> Reddit
+          </network>
+          <network network="skype">
+            <i class="fab fa-skype"></i> Skype
+          </network>
+          <network network="sms">
+            <i class="fab fa-commenting-o"></i> SMS
+          </network>
+          <network network="telegram">
+            <i class="fab fa-telegram"></i> Telegram
+          </network>
+          <network network="twitter">
+            <i class="fab fa-twitter"></i> Twitter
+          </network>
+          <network network="vk">
+            <i class="fab fa-vk"></i> VKontakte
+          </network>
+          <network network="weibo">
+            <i class="fab fa-weibo"></i> Weibo
+          </network>
+          <network network="whatsapp">
+            <i class="fab fa-whatsapp"></i> Whatsapp
+          </network>
+      </div>
+    </social-sharing>
+
+            <v-btn
+              color="pink"
+              dark
+              small
+              relative
+              right
+              top
+              fab
+              fixed
+              @click.stop="openRefreshDialog()"
+            >
+            <v-icon small centered align-content-center>fa fa-sync</v-icon>
+            </v-btn>
+
+            </v-layout>
+        </v-slide-y-transition>
+    </v-container>
+</template>
+
+<script>
+import { baseUrl, eventBus, getdata, baseUrl2 } from "../main.js";
+
+export default {
+  name: "Main",
+
+  data() {
+    return {
+      media: "",
+      median: 0,
+      articleId: this.$router.id,
+      notImg: false,
+      article: {
+        title: "",
+        authors: "",
+        url: "",
+        img: "",
+        comments: ""
+      },
+      summary: "",
+      entities: [],
+
+      pieRoute: baseUrl2 + "/comments/opinion/",
+      timeRoute: baseUrl + "/comments/time/",
+      entitiesRoute: "/comments/entities/",
+      actual_route: window.location.href
+    };
+  },
+  methods: {
+    gotosite(producturl){
+      window.open(producturl, '_blank');
+    },
+    changeTitle: function() {
+      this.article.title = baseUrl;
+      eventBus.$emit("urlchange", "me cago en todo");
+    },
+    openRefreshDialog: function () {
+      //console.log('esta pinga funciona')
+      eventBus.$emit("refreshdialog", this.article);
+
+    },
+    getData: function() {
+      fetch(baseUrl + "/article/" + this.$route.params.id).then(response => {
+        if (response.status != 200) {
+          console.log("Error Do stuff here");
+        }
+
+        response.json().then(json => {
+          this.article = json;
+          if (this.article.img === undefined) {
+            this.article.img = this.getmedio(json.media);
+          }
+          this.media = json.media;
+          if (this.media == "CubaDebate") {
+            //console.log(require('@/assets/cubadebate.png'));
+            this.median = 0;
+          }
+          // this was for set the same url in app
+          // eventBus.$emit("urlchange", json.url);
+        });
+      });
+    },
+
+    getSummary: function() {
+      fetch(baseUrl2 + "/summary/" + this.$route.params.id).then(response => {
+        if (response.status != 200) {
+          console.log("Error Do stuff here");
+        }
+
+        response.json().then(json => {
+          this.summary = json.summary;
+        });
+      });
+    },
+
+    getEntities: function() {
+      /*getdata(this.entitiesRoute).then(json => {
+        this.entities = json.entities;
+        console.log(this.entities);
+      });*/
+      fetch(baseUrl2 + this.entitiesRoute).then(response => {
+        if (response.status != 200) {
+          console.log("Error Do stuff here");
+        }
+
+        response.json().then(json => {
+          this.entities = json.entities;
+        });
+      });
+    },
+    getmedio: function(med) {
+      //console.log("getmedio");
+      if (med == "CubaDebate") {
+        //console.log(require('@/assets/cubadebate.png'));
+        return require("@/assets/cubadebate.png");
+      } else {
+        return "";
+      }
+    }
+  },
+  beforeMount() {
+    this.getData();
+    this.getSummary();
+    this.getEntities();
+  },
+  created() {
+    this.pieRoute += this.$route.params.id;
+    this.timeRoute += this.$route.params.id;
+    this.entitiesRoute += this.$route.params.id;
+  }
+};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+canvas {
+  width: 600px;
+}
+h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+  text-decoration: none;
+}
+
+p {
+  font-size: 18px;
+  text-align: justify;
+}
+.v-btn--top:not(.v-btn--absolute) {
+  top: 64px;
+}
+</style>

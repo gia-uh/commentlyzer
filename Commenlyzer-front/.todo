@@ -1,0 +1,33 @@
+
+Todo:
+  ✔ Evento para cambiar la url en las otras vistas con un evento @done(18-10-03 07:19)
+  ✔ quitar ptos que molestan en la gráfica de cantidad @done(18-10-03 21:14)
+
+  Frontend:
+    ☐ Waiting view
+    ✔ Bottum for updates @done(18-10-05 13:43)
+    ✔ Include Momentjs y ponerselo a las fechas que halla @done(18-10-05 13:44)
+    ✔ Aumentar el Font de las tablas y eltexto @done(18-10-05 20:16)
+    ☐ Share en Facebook, Twitter, etc
+    ☐ Fecha de último update
+    ☐ Esconder si no está la imagen
+    ✔ miniporcientos en las entidades @done(18-10-05 21:03)
+    ✔ Link para leer la noticia en la fuente original @done(18-10-05 21:12)
+    ☐ Iconos del Medio original
+    ✔ Manejar los errores en vue @done(18-12-02 17:08)
+    ✔ Cambiar donde viene la infomacion de las minigraficas y el total @done(18-10-05 21:13)
+    ☐ Verificar que la hora funcione bien
+
+  Backend:
+    ☐ sort by last update
+    ☐ Waiting info mecanismo
+    ☐ enpoints for update
+    ☐ flask logging
+    ☐ Fecha de último update
+    ☐ time filters
+    ☐ Revisar crawler
+    ☐ Cambiar donde viene la infomacion de las minigraficas y el total
+
+Me:
+  ✔ instalar un formater para vue @done(18-10-03 07:19)
+  ☐ Poner esto en trello
