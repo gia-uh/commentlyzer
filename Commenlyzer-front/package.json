@@ -28,7 +28,6 @@
     "devDependencies": {
         "@vue/cli-plugin-eslint": "^3.0.3",
         "@vue/cli-service": "^3.0.3",
-        "vue-cli-plugin-moment": "^0.1.1",
         "vue-cli-plugin-vuetify": "^0.2.0",
         "vue-template-compiler": "^2.5.17"
     },
