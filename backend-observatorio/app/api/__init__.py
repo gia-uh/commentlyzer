@@ -14,7 +14,7 @@ task = None
 
 real = os.getenv('REAL_PROCESS')
 
-if True:
+if real=='1':
     #global comments, sumarization
     #comments = importlib.import_module('comments','.')
     #sumarization = importlib.import_module('sumarization','.')
