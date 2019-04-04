@@ -6,7 +6,6 @@
                     <v-card>
                       <v-layout align-center>
                         <v-flex lg3 md3 sm3 xs3>
-                </span>
                 <svg v-if="median==0"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"

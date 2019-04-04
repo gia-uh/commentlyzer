@@ -138,17 +138,22 @@ Created by potrace 1.14, written by Peter Selinger 2001-2017
         </v-flex>
       </v-layout>
       </v-container>
-          <v-pagination
+         <v-container class="text-xs-center"> <v-pagination
               v-model="page"
               :length="totalpage"
-              circle
-            ></v-pagination>
+              :total-visible="7"
+              color="#42b983"
+              prev-icon="fas fa-caret-left"
+              next-icon="fas fa-caret-right"
+            ></v-pagination></v-container>
       </v-card>
     </v-slide-y-transition>
     </v-flex>
   </v-layout>
   <!-- </v-container> -->
 </template>
+
+
 
 <script>
 import { eventBus, baseUrl } from "../main.js";

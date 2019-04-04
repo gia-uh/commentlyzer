@@ -1,13 +1,10 @@
 # build stage
 FROM node:lts-alpine as build-stage
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
+COPY Commenlyzer-front/package*.json ./
+RUN npm install && mkdir /node_modules && cp -r node_modules /node_modules
+COPY Commenlyzer-front .
 RUN npm run build
-
-# production stage
-FROM nginx:stable-alpine as production-stage
-COPY --from=build-stage /app/dist /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# ENTRYPOINT ['npm', 'install']
+CMD ["npm", "run", "serve"]
+EXPOSE 8000
