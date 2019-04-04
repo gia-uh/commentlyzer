@@ -21,7 +21,7 @@
       <router-view/>
     </v-content>
     <v-footer :fixed="fixed" app>
-      <span>&copy; 2018</span>
+      <span>&copy; {{year}}</span>
     </v-footer>
 
       <v-dialog v-model="dialog" width="800px">
@@ -79,6 +79,7 @@ export default {
   name: "App",
   data() {
     return {
+      year: 1995,
       article: {
         title: 'SI ESTAS LEYENDO ESTO ES QUE ALGO SALIÓ MAL',
         last_update: '5-5-2014',
@@ -181,7 +182,9 @@ export default {
       this.urlsearch = data.url;
     }
   },
-
+  mounted(){
+    this.year = new Date().getFullYear()
+  },
   created() {
     if (data.url !== "") {
       this.urlsearch = data.url;
