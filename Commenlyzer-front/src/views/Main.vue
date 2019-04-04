@@ -165,8 +165,8 @@ Created by potrace 1.14, written by Peter Selinger 2001-2017
                         </v-responsive>
                     </v-card>
                 </v-flex>
-
-                <social-sharing
+              <v-container class="text-xs-center">
+                <social-sharing 
                       :url=actual_route
                       title="Commentslyzer"
                       description="Un ojo en la prensa cubana"
@@ -174,63 +174,64 @@ Created by potrace 1.14, written by Peter Selinger 2001-2017
                       hashtags="cuba,noticias"
                       inline-template>
       <div>
-          <network network="email">
+          <network network="email" class="pa-1">
               <i class="fas fa-envelope"></i> Email
           </network>
-          <network network="facebook">
+          <network network="facebook" class="pa-1">
             <i class="fab fa-facebook-square"></i> Facebook
           </network>
-          <network network="line">
+          <network network="line" class="pa-1">
             <i class="fab fa-line"></i> Line
           </network>
-          <network network="linkedin">
+          <network network="linkedin" class="pa-1">
             <i class="fab fa-linkedin"></i> LinkedIn
           </network>
-          <network network="odnoklassniki">
+          <network network="odnoklassniki" class="pa-1">
             <i class="fab fa-odnoklassniki"></i> Odnoklassniki
           </network>
-          <network network="pinterest">
+          <network network="pinterest" class="pa-1">
             <i class="fab fa-pinterest"></i> Pinterest
           </network>
-          <network network="reddit">
+          <network network="reddit" class="pa-1">
             <i class="fab fa-reddit"></i> Reddit
           </network>
-          <network network="skype">
+          <network network="skype" class="pa-1">
             <i class="fab fa-skype"></i> Skype
           </network>
-          <network network="sms">
+          <network network="sms" class="pa-1">
             <i class="fab fa-commenting-o"></i> SMS
           </network>
-          <network network="telegram">
+          <network network="telegram" class="pa-1">
             <i class="fab fa-telegram"></i> Telegram
           </network>
-          <network network="twitter">
+          <network network="twitter" class="pa-1">
             <i class="fab fa-twitter"></i> Twitter
           </network>
-          <network network="vk">
+          <network network="vk" class="pa-1">
             <i class="fab fa-vk"></i> VKontakte
           </network>
-          <network network="weibo">
+          <network network="weibo" class="pa-1">
             <i class="fab fa-weibo"></i> Weibo
           </network>
-          <network network="whatsapp">
+          <network network="whatsapp" class="pa-1">
             <i class="fab fa-whatsapp"></i> Whatsapp
           </network>
       </div>
     </social-sharing>
+              </v-container>
 
             <v-btn
               color="pink"
               dark
               small
-              relative
               right
               top
               fab
+              ripple
               fixed
               @click.stop="openRefreshDialog()"
             >
-            <v-icon small centered align-content-center>fa fa-sync</v-icon>
+            <v-icon small centered align-content-center>fa fa-redo</v-icon>
             </v-btn>
 
             </v-layout>
@@ -274,7 +275,7 @@ export default {
       this.article.title = baseUrl;
       eventBus.$emit("urlchange", "me cago en todo");
     },
-    openRefreshDialog: function () {
+    openRefreshDialog: async function () {
       //console.log('esta pinga funciona')
       eventBus.$emit("refreshdialog", this.article);
 
@@ -377,6 +378,6 @@ p {
   text-align: justify;
 }
 .v-btn--top:not(.v-btn--absolute) {
-  top: 64px;
+  top: 100px;
 }
 </style>
