@@ -4,7 +4,7 @@
       app
       :clipped-left="clipped"
     >
-      <v-toolbar-title style="cursor: pointer;" @click.stop="$router.push('/')" v-text="title"></v-toolbar-title>
+      <v-toolbar-title style="cursor: pointer;" @click.stop="$router.replace('/')" v-text="title"></v-toolbar-title>
 
       <v-spacer></v-spacer>
         <v-text-field
@@ -44,7 +44,7 @@
               <v-card-actions>
                               <v-btn flat color="red" @click="updatePage(); dialog=false;">Actualizar Contenido</v-btn>
                               <v-spacer></v-spacer>
-                              <v-btn flat color="primary" @click.stop="$router.push('/articles/' + article.id); dialog=false; urlsearch=''; ">Continuar</v-btn>
+                              <v-btn flat color="primary" @click.stop="$router.replace('/articles/' + article.id); dialog=false; urlsearch=''; ">Continuar</v-btn>
               </v-card-actions>
           </v-card>
       </v-dialog>
@@ -65,7 +65,7 @@
               </v-container>
               <v-card-actions>
                               <v-spacer></v-spacer>
-                              <v-btn flat color="primary" @click.stop="$router.push('/');dialoge=false; urlsearch=''; ">Continuar</v-btn>
+                              <v-btn flat color="primary" @click.stop="$router.replace('/');dialoge=false; urlsearch=''; ">Continuar</v-btn>
               </v-card-actions>
           </v-card>
       </v-dialog>
@@ -131,7 +131,7 @@ export default {
 
     process_response(response){
         // if (response.status < 200 || response.status >= 300) {
-        //   this.$router.push("/error/" + response.status);
+        //   this.$router.replace("/error/" + response.status);
         //   return;
         // }
         console.log(response);
@@ -148,7 +148,7 @@ export default {
                 return;
               // this.article = json;
               // this.dialog = true;
-              // this.$router.push("/articles/" + json.id)
+              // this.$router.replace("/articles/" + json.id)
               });
           return;
         }
@@ -164,7 +164,7 @@ export default {
               }
               this.article = json;
               this.dialog = true;
-              // this.$router.push("/articles/" + json.id)
+              // this.$router.replace("/articles/" + json.id)
               });
           return;
         }

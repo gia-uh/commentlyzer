@@ -219,7 +219,7 @@ export default {
       this.waiting = true;
     });
     eventBus.$on("onretrive", json => {
-      this.$router.push("/articles/" + json.id);
+      this.$router.replace("/articles/" + json.id);
     });
     this.urlsearch = "";
     this.gotarticle();
@@ -246,6 +246,9 @@ export default {
         });
     });
         }
+  },
+  mounted (){
+    this.$router.push('/')
   }
 };
 </script>

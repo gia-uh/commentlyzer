@@ -25,7 +25,7 @@
 import { eventBus, baseUrl } from "../main.js";
 
 export default {
-  name: "Home",
+  name: "Wait",
   data() {
     return {
       url: "",
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     gotomain: function() {
-      this.$router.push("/articles/79");
+      this.$router.replace("/articles/79");
     },
     getData: function() {
       console.log('checking status')
@@ -49,7 +49,7 @@ export default {
 
         if (response.status === 200) {
             response.json().then(json => {
-            this.$router.push("/articles/" + json.id)
+            this.$router.replace("/articles/" + json.id)
 
         });
           return;
@@ -72,7 +72,7 @@ export default {
       this.waiting = true;
     });
     eventBus.$on("onretrive", json => {
-      this.$router.push("/articles/" + json.id);
+      this.$router.replace("/articles/" + json.id);
     });
   },
   beforeMount() {
