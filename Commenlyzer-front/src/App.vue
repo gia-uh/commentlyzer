@@ -20,9 +20,56 @@
     <v-content>
       <router-view/>
     </v-content>
-    <v-footer :fixed="fixed" app>
-      <span>&copy; {{year}}</span>
-    </v-footer>
+    <!-- <v-footer :fixed="fixed" app >
+      <span >&copy; {{year}}
+
+      <v-btn  flat color="#42b983" small >Acerca de nosotros</v-btn>
+      </span>
+    </v-footer> -->
+
+    <v-footer
+    dark
+    height="auto"
+    fixed
+  >
+    <v-card
+      class="flex"
+      flat
+      tile
+    >
+      <v-card-actions class="grey darken-3 justify-end">
+       &copy;{{year}}
+      </v-card-actions>
+    </v-card>
+  </v-footer>
+
+ <v-btn
+              color="#42b983"
+              dark
+              small
+              left
+              bottom
+              fab
+              ripple
+              fixed
+              @click.stop="aboutUs.activate=true"
+            >
+            <v-icon small centered align-content-center>fa fa-users</v-icon>
+            </v-btn>
+
+      <v-dialog v-model="aboutUs.activate" width="500" >
+        <v-card>
+          <v-card-title class="grey darken-3 justify-center">
+            <v-avatar size="50%">
+              <img src="https://lh3.googleusercontent.com/-k78IDbpk1Sg/V7D4hPLFU6I/AAAAAAAAAGY/k4kOdxMt4k0sCCGolxdLlwSOWMX9cEwgwCEwYBhgL/w140-h140-p/a7622366-39f9-4f66-b480-0b46030bcf9b" alt="avatar">
+            </v-avatar>
+          </v-card-title>
+          <v-card-text >{{aboutUs.text}}</v-card-text>
+          <v-card-actions>
+            <v-btn v-for="link in aboutUs.links" flat small :key="link.name"><v-icon small :class="link.icon"></v-icon>  {{link.name}}</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
 
       <v-dialog v-model="dialog" width="800px">
           <v-card>
@@ -79,6 +126,24 @@ export default {
   name: "App",
   data() {
     return {
+      aboutUs: {
+        activate:false,
+        text: "Soy un gordito to apapachable, a veces me gusta correr en la lluvia desnudo \
+        y sentir el viento frio en mis huevos. Tambien soy un cibernetico sabroso y en mis \
+        ratos libres me dedico a abusar de ancianos, a sodomizar jirafas y a aprovecharme de \
+        los tullidos. Soy lo mejor, ademas, revisen que cuqui esta mi foto de perfil.",
+        links:[
+          {
+            icon:"fab fa-github",
+            name:"Github"
+          },
+          {
+            icon:"fab fa-linkedin",
+            name:"Linkedin"
+          }
+        ]
+
+      },
       year: 1995,
       article: {
         title: 'SI ESTAS LEYENDO ESTO ES QUE ALGO SALIÓ MAL',

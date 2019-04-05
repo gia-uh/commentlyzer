@@ -1,0 +1,20 @@
+version: '2'
+services:
+  front:
+    build:
+      context: .
+      dockerfile: ./Commenlyzer-front/Dockerfile
+    image: front-prensa
+    container_name: "front-debug"
+
+    # command: cd / && python /backend-observatorio/production.py
+    ports:
+      - 8080:8080
+
+    volumes:
+      - ./Commenlyzer-front/:/app
+
+    environment:
+      - PYTHONPATH=/Crawler
+      - MONGO_URI=mongodb://mongodb:27017/elchismoso
+      - REAL_PROCESS=1

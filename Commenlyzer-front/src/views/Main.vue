@@ -234,6 +234,7 @@ Created by potrace 1.14, written by Peter Selinger 2001-2017
             <v-icon small centered align-content-center>fa fa-redo</v-icon>
             </v-btn>
 
+
             </v-layout>
         </v-slide-y-transition>
     </v-container>

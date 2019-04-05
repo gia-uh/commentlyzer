@@ -53,7 +53,3 @@ new Vue({
     router,
     render: h => h(App),
 }).$mount('#app')
-
-window.onpopstate = function(){
-    console.log('popped')
-}
