@@ -12,7 +12,7 @@ services:
       - 8080:8080
 
     volumes:
-      - ./Commenlyzer-front/:/app
+      - ./Commenlyzer-front:/app
 
     environment:
       - PYTHONPATH=/Crawler

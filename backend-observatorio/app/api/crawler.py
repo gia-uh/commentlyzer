@@ -40,7 +40,7 @@ def get_page():
     dat['last_update'] = tt
     dat['media'] = data.source
     comments = data.comment
-    #print(comments)
+    # print(comments)
     # comments_clean = []
     # for i in comments:
     #     tt = i['text']

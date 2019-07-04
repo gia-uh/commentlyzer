@@ -7,6 +7,8 @@ import uuid
 import logging
 from .model import Manager
 from Crawler import UnreachebleURL, ProxyConfigError
+import pickle
+from base64 import b64encode
 
 logger = logging.getLogger('backgroundlogger')
 
@@ -33,20 +35,36 @@ def background(f):
             try:
                 # invoke the wrapped function and record the returned
                 # response in the background_tasks dictionary
-                background_tasks[id] = make_response(f(*args, **kwargs))
+                tt=make_response(f(*args, **kwargs))
+                background_tasks[id] = tt
+                r=b64encode(pickle.dumps(tt))
+                Manager.chnage_task_result(id, r)
+                Manager.chnage_task_stats(id, 1)
             except ProxyConfigError as e:
                 logger.error(str(e))
-                background_tasks[id] = make_response(
+                tt = make_response(
                     bad_gateway_error("Server Proxy error."))
+                background_tasks[id] = tt
+                r=b64encode(pickle.dumps(tt))
+                Manager.chnage_task_result(id, r)
+                Manager.chnage_task_stats(id, 1)
             except UnreachebleURL as e:
                 logger.error(str(e))
-                background_tasks[id] = make_response(
+                tt = make_response(
                     bad_gateway_error("URL unreacheble."))
+                background_tasks[id] = tt
+                r=b64encode(pickle.dumps(tt))
+                Manager.chnage_task_result(id, r)
+                Manager.chnage_task_stats(id, 1)
             except Exception as e:
                 # the wrapped function raised an exception, return a 500
                 # response
                 logger.error(str(e))
-                background_tasks[id] = make_response(internal_server_error(e.args[0]))
+                tt = make_response(internal_server_error(e.args[0]))
+                background_tasks[id] = tt
+                r=b64encode(pickle.dumps(tt))
+                Manager.chnage_task_result(id, r)
+                Manager.chnage_task_stats(id, 1)
 
         # store the background task under a randomly generated identifier
         # and start it
@@ -98,7 +116,7 @@ def background_optional(f):
                 background_tasks[id] = make_response(internal_server_error(e.args[0]))
 
         data = request.json
-        print(data)
+        logger.debug(str(data))
         url = data['url']
 
         id = Manager.search_url(url)
@@ -106,12 +124,20 @@ def background_optional(f):
         if id is not None:
             # return jsonify({'id': str(id)})
             return f(*args, **kwargs)
+
+        id = Manager.search_url_task(url)
+
+        if id is not None:
+            logger.debug(str({'Location': url_for('api.get_task_status', id=id)}))
+            return jsonify({'Location': url_for('api.get_task_status', id=id), 'id': id}), 202, {'Location': url_for('api.get_task_status', id=id)}
+
         # store the background task under a randomly generated identifier
         # and start it
         global background_tasks
         id = uuid.uuid4().hex
         background_tasks[id] = Thread(target=task)
         background_tasks[id].start()
+        Manager.insert_task(id, url)
 
         # return a 202 Accepted response with the location of the task status
         # resource

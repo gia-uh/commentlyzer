@@ -14,12 +14,62 @@ class Manager:
     comments = mongo.db["Comments"]
     entities = mongo.db["Entities"]
     opinions = mongo.db["Opinions"]
+    tasks = mongo.db['Tasks']
+
+    @staticmethod
+    def insert_task(idd: str, url: str):
+        tk = {'id_tk': idd, 'url': url, 'status': 0, 'result': ''}
+        Id = Manager.tasks.insert_one(tk)
+        return Id
+
+    @staticmethod
+    def get_task_result(idd: str):
+        a = Manager.tasks.find_one({'id_tk': idd})
+        return a['result']
+
+    @staticmethod
+    def chnage_task_stats(idd: str, stats: int=1):
+        a = Manager.tasks.find_one({'id_tk': idd})
+        Manager.tasks.update_one(
+            {'_id': a['_id']}, {"$set": {"status": stats}}, upsert=False)
+
+    @staticmethod
+    def chnage_task_result(idd: str, res: str):
+        a = Manager.tasks.find_one({'id_tk': idd})
+        Manager.tasks.update_one(
+            {'_id': a['_id']}, {"$set": {"result": res}}, upsert=False)
+
+
+    @staticmethod
+    def search_url_task(url: str):
+        a = Manager.tasks.find_one({'url': url})
+        if a:
+            return a['id_tk']
+        else:
+            return None
+
+    @staticmethod
+    def search_task(idd: str):
+        a = Manager.tasks.find_one({'id_tk': idd})
+        if a:
+            return a['status']
+        else:
+            return None
+
+    @staticmethod
+    def remove_task(idd: str):
+       Manager.tasks.delete_one({'id_tk': idd})
+
+    @staticmethod
+    def remove_task_url(url: str):
+        Manager.tasks.delete_one({'url': url})
 
     @staticmethod
     def update_last_update(Id: ObjectId):
         Manager.articles.update_one(
             {'_id': Id}, {"$set": {"last_update": datetime.utcnow()}}, upsert=False)
 
+    @staticmethod
     def get_last_update(Id: ObjectId):
         r = Manager.articles.find_one({'_id': Id})
         if not (r is None):
