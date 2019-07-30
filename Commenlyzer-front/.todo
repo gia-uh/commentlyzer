@@ -4,28 +4,29 @@ Todo:
   ✔ quitar ptos que molestan en la gráfica de cantidad @done(18-10-03 21:14)
 
   Frontend:
-    ☐ Waiting view
+    ✔ Waiting view @done(19-07-30 12:19)
     ✔ Bottum for updates @done(18-10-05 13:43)
     ✔ Include Momentjs y ponerselo a las fechas que halla @done(18-10-05 13:44)
     ✔ Aumentar el Font de las tablas y eltexto @done(18-10-05 20:16)
     ☐ Share en Facebook, Twitter, etc
-    ☐ Fecha de último update
+    ✔ Fecha de último update @done(19-07-30 12:18)
     ☐ Esconder si no está la imagen
     ✔ miniporcientos en las entidades @done(18-10-05 21:03)
     ✔ Link para leer la noticia en la fuente original @done(18-10-05 21:12)
-    ☐ Iconos del Medio original
+    ✔ Iconos del Medio original @done(19-07-30 12:18)
     ✔ Manejar los errores en vue @done(18-12-02 17:08)
     ✔ Cambiar donde viene la infomacion de las minigraficas y el total @done(18-10-05 21:13)
     ☐ Verificar que la hora funcione bien
+    ☐ Escribir el about us
 
   Backend:
     ☐ sort by last update
     ☐ Waiting info mecanismo
     ☐ enpoints for update
-    ☐ flask logging
-    ☐ Fecha de último update
+    ✔ flask logging @done(19-07-30 12:19)
+    ✔ Fecha de último update @done(19-07-30 12:19)
     ☐ time filters
-    ☐ Revisar crawler
+    ✔ Revisar crawler @done(19-07-30 12:19)
     ☐ Cambiar donde viene la infomacion de las minigraficas y el total
 
 Me:

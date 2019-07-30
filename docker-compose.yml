@@ -19,8 +19,6 @@ services:
       - MONGO_URI=mongodb://mongodb:27017/elchismoso
       - REAL_PROCESS=1
 
-
-      
   mongodb:
     image: mongo:4.0.6
     container_name: "mongodb"
@@ -31,4 +29,5 @@ services:
       - ./data/db:/data/db
     ports:
         - 27017:27017
-    command: mongod #--smallfiles --logpath=/dev/null # --quiet
+    command: mongod --wiredTigerCacheSizeGB=2
+    # --wiredTigerCacheSizeGB=n limit the amount of ram used to n
