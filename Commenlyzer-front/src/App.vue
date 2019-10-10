@@ -128,19 +128,16 @@ export default {
     return {
       aboutUs: {
         activate:false,
-        text: "Soy un gordito to apapachable, a veces me gusta correr en la lluvia desnudo \
-        y sentir el viento frio en mis huevos. Tambien soy un cibernetico sabroso y en mis \
-        ratos libres me dedico a abusar de ancianos, a sodomizar jirafas y a aprovecharme de \
-        los tullidos. Soy lo mejor, ademas, revisen que cuqui esta mi foto de perfil.",
+        text: "Commentlyzer está desarrollado por el Grupo de Inteligencia Artificial de la Universidad de la Habana (GIA). El grupo está dirigido por el Doctor en Ciencias Yudivián Almeida.",
         links:[
-          {
-            icon:"fab fa-github",
-            name:"Github"
-          },
-          {
-            icon:"fab fa-linkedin",
-            name:"Linkedin"
-          }
+          // {
+          //   icon:"fab fa-github",
+          //   name:"Github"
+          // },
+          // {
+          //   icon:"fab fa-linkedin",
+          //   name:"Linkedin"
+          // }
         ]
 
       },
