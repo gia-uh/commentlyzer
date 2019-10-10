@@ -60,13 +60,9 @@
       <v-dialog v-model="aboutUs.activate" width="500" >
         <v-card>
           <v-card-title class="grey darken-3 justify-center">
-            <v-avatar size="50%">
-              <img src="https://lh3.googleusercontent.com/-k78IDbpk1Sg/V7D4hPLFU6I/AAAAAAAAAGY/k4kOdxMt4k0sCCGolxdLlwSOWMX9cEwgwCEwYBhgL/w140-h140-p/a7622366-39f9-4f66-b480-0b46030bcf9b" alt="avatar">
-            </v-avatar>
           </v-card-title>
           <v-card-text >{{aboutUs.text}}</v-card-text>
           <v-card-actions>
-            <v-btn v-for="link in aboutUs.links" flat small :key="link.name"><v-icon small :class="link.icon"></v-icon>  {{link.name}}</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
