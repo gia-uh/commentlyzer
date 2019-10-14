@@ -190,17 +190,13 @@ Created by potrace 1.14, written by Peter Selinger 2001-2017
                         <v-card-title>
                             <span> Cantidad de comentarios </span>
                         </v-card-title>
-                        <line-chart :discrete="false" :data="timeRoute" height="100px"></line-chart>
+                        <line-chart :discrete="false" :data="timeRoute" height="100px" class="paddingr paddingl"></line-chart>
                     </v-card>
                 </v-flex>
 
                 <v-flex style="align-self: flex-start;" class="down" lg6 md6 sm6 xs12>
                     <v-card>
-                        <v-card-title>
-                        </v-card-title>
-                        <v-responsive>
-                            <pie-chart :data="pieRoute" :donut="false" :options="{ 'fill': ['orange', 'blue', 'red']}"></pie-chart>
-                        </v-responsive>
+                        <pie-chart :data="pieRoute" :donut="false" :options="{ 'fill': ['orange', 'blue', 'red']}" class="paddingb paddingt"></pie-chart>
                     </v-card>
                 </v-flex>
 
@@ -435,4 +431,8 @@ p {
 .v-btn--top:not(.v-btn--absolute) {
   top: 100px;
 }
+.paddingr { padding-right: 2%; }
+.paddingb { padding-bottom: 4%; }
+.paddingt { padding-top: 4%; }
+.paddingl { padding-left: 2%; }
 </style>

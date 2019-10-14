@@ -4,8 +4,9 @@ from ..decorators import background
 from ..model import Manager, Articles
 from bson import ObjectId
 from datetime import datetime
-from Crawler import CubaDebate
+from Crawler import Crawler
 import logging
+from flask import current_app as app
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger('articles')
@@ -61,7 +62,8 @@ def get_topten():
 def method_name():
     artt = Articles(id)
     art = artt.to_article()
-    data = CubaDebate(art['url'])
+    data = Crawler(app.config['PROXY_CONFIG'])
+    data.request(art['url'])
     cc = data.comment
     if len(cc) > art['comments']:
         cc = cc[art['comments']:]
@@ -76,7 +78,8 @@ def method_name():
 def update_article(id):
     artt = Articles(id)
     art = artt.to_article()
-    data = CubaDebate(art['url'])
+    data = Crawler(app.config['PROXY_CONFIG'])
+    data.request(art['url'])
     cc = data.comment
     if len(cc) > art['comments']:
         cc = cc[art['comments']:]

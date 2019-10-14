@@ -1,6 +1,6 @@
 from flask import request, jsonify
 from flask import current_app as app
-from Crawler import CubaDebate, Crawler
+from Crawler import Crawler
 from . import api
 from ..decorators import background_tasks, background_optional
 from .article import get_data
