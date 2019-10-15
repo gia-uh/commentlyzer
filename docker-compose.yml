@@ -21,7 +21,7 @@ services:
 
   mongodb:
     image: mongo:4.0.6
-    container_name: "mongodb"
+    container_name: "prensamongodb"
     environment:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/dev/null
