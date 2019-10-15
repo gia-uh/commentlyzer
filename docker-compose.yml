@@ -26,8 +26,11 @@ services:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/dev/null
     volumes:
-      - ./data/db:/data/db
+      - prensamongodata:/data/db
     ports:
         - 27017:27017
     command: mongod --wiredTigerCacheSizeGB=2
     # --wiredTigerCacheSizeGB=n limit the amount of ram used to n
+
+volumes:
+    prensamongodata:
