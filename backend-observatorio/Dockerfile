@@ -19,11 +19,12 @@ COPY ./backend-observatorio/requeriments.txt /requeriments.txt
 RUN pip install -r /requeriments.txt && rm -rf /root/.cache
 RUN spacy download es_core_news_md
 RUN mkdir -p /backend-observatorio/app
-RUN cd /backend-observatorio/app &&\
+RUN mkdir /models &&\
+    cd /models &&\
     wget "https://drive.google.com/uc?authuser=0&id=1resrPNTxlVfeUgICncN51-1HsL0WvJJT&export=download" -O engine.tar.gz&&\
     tar -xzvf engine.tar.gz &&\
     rm engine.tar.gz
-RUN chmod 777 /backend-observatorio/app/engine/serialized/
+RUN chmod 777 /models/engine/serialized/
 COPY ./backend-observatorio .
 CMD python backend-observatorio/production.py
 COPY --from=build-stage /app/dist /backend-observatorio/app/static

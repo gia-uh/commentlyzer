@@ -7,6 +7,9 @@ services:
     image: prensa
     container_name: "prensa"
 
+    # volumes:
+    #   - backend-observatorio:/data/db
+
     # command: cd / && python /backend-observatorio/production.py
     ports:
       - 8000:8000
@@ -18,6 +21,8 @@ services:
       - PYTHONPATH=/Crawler
       - MONGO_URI=mongodb://mongodb:27017/elchismoso
       - REAL_PROCESS=1
+      - VECTORIZER_MODEL_PATH=/models/engine/serialized/serialized_opinion_vectorizer
+      - CLASSIFIER_MODEL_PATH=/models/engine/serialized/serialized_opinion_classifier
 
   mongodb:
     image: mongo:4.0.6

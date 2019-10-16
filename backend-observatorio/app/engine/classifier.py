@@ -10,11 +10,14 @@ try:
 except:
     MODULE = ""
 
+classifier_path = os.environ.get('CLASSIFIER_MODEL_PATH', os.path.join(MODULE, 'serialized', 'serialized_opinion_classifier'))
+vectorized_path = os.environ.get('VECTORIZER_MODEL_PATH', os.path.join(MODULE, 'serialized', 'serialized_opinion_vectorizer'))
 
-Classifier = joblib.load(
-    os.path.join(MODULE, 'serialized', 'serialized_opinion_classifier'))
-Vectorizer = joblib.load(
-    os.path.join(MODULE, 'serialized', 'serialized_opinion_vectorizer'))
+print('Serial paths:')
+print(classifier_path, vectorized_path, os.environ)
+
+Classifier = joblib.load(classifier_path)
+Vectorizer = joblib.load(vectorized_path)
 
 
 def roundx(number):
