@@ -74,7 +74,7 @@
 
     <v-dialog v-model="aboutUs.activate" width="500">
       <v-card>
-        <v-card-title class="grey darken-3 justify-center"></v-card-title>
+        <v-card-title class="grey darken-3 justify-center" style="color:white">Nosotros</v-card-title>
         <v-card-text>{{aboutUs.text}}</v-card-text>
         <v-card-actions></v-card-actions>
       </v-card>
@@ -146,7 +146,7 @@ export default {
       aboutUs: {
         activate: false,
         text:
-          "Commentlyzer está desarrollado por el Grupo de Inteligencia Artificial de la Universidad de la Habana (GIA). El grupo está dirigido por el Doctor en Ciencias Yudivián Almeida.",
+          "Commentlyzer está desarrollado por el Grupo de Inteligencia Artificial de la Universidad de la Habana (GIA) . El grupo está dirigido por el Doctor en Ciencias Yudivián Almeida. \nAgradecimientos especiales a Lawrence Gil, sin quien este proyecto definitivamente hubiera salido, pero no hubiera quedado tan bonito.",
         links: [
           // {
           //   icon:"fab fa-github",
