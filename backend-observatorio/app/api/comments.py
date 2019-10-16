@@ -83,7 +83,7 @@ def entities(id):
     updateb = False
     if not(ents is None):
         if ents['last_update']==upt:
-            return jsonify({'entities': ents['entities'][:10]})
+            return jsonify({'entities': ents['entities'][:ENTITIES_NUMBER]})
         else:
             updateb = True
     comments = list(map(lambda x: x['text'],Manager.interval_comments(ObjectId(id), datetime.utcnow())))
