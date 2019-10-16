@@ -51,7 +51,7 @@ def background(f):
             except UnreachebleURL as e:
                 logger.error(str(e))
                 tt = make_response(
-                    bad_gateway_error("URL unreacheble."))
+                    bad_gateway_error("URL unreachable."))
                 background_tasks[id] = tt
                 r=b64encode(pickle.dumps(tt))
                 Manager.chnage_task_result(id, r)

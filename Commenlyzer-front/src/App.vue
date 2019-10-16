@@ -39,7 +39,10 @@
         </v-layout>
       </v-layout>
     </v-card>
-    <v-content>
+    <v-content class="hidden-sm-and-down">
+      <router-view />
+    </v-content>
+    <v-content class="hidden-md-and-up pt-0">
       <router-view />
     </v-content>
     <!-- <v-footer :fixed="fixed" app >

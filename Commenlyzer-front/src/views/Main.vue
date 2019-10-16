@@ -5,8 +5,8 @@
         <v-flex lg12 md12 sm12 xs12>
           <v-card>
             <v-layout align-center>
-              <!-- <v-flex lg3 md3 sm3 xs3> -->
-              <!-- <svg
+              <v-flex lg3 md3 sm3 xs3 class="hidden-sm-and-down">
+                <svg
                   v-if="median==0"
                   xmlns:dc="http://purl.org/dc/elements/1.1/"
                   xmlns:cc="http://creativecommons.org/ns#"
@@ -148,8 +148,8 @@
                     />
                   </g>
                 </svg>
-              <br />-->
-              <!-- </v-flex> -->
+                <br />
+              </v-flex>
               <v-flex>
                 <h1 class="hidden-sm-and-down">{{article.title}}</h1>
                 <h3 class="hidden-md-and-up mt-0">{{article.title}}</h3>
