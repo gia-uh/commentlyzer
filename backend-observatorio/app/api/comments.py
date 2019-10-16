@@ -54,6 +54,12 @@ def comments_opinion(id):
             updateb = True
 
     comments = list(Manager.interval_comments(ObjectId(id), datetime.utcnow()))
+    if len(comments)==0:
+        return  {
+                    'Positivo': 0,
+                    'Neutro': 0,
+                    'Negativo': 0
+                }
     opinion = extract_opinion([comment['text'] for comment in comments])
 
     counter = Counter(opinion)
@@ -81,6 +87,8 @@ def entities(id):
         else:
             updateb = True
     comments = list(map(lambda x: x['text'],Manager.interval_comments(ObjectId(id), datetime.utcnow())))
+    if len(comments)==0:
+        return jsonify({'entities':[]})
     ents = pipe_ents_detect(comments)
     entss = set()
     for i in ents:

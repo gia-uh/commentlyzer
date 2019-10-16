@@ -24,6 +24,10 @@
 <script>
 import { eventBus, baseUrl } from "../main.js";
 
+function sleep (time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
+
 export default {
   name: "Wait",
   data() {
@@ -43,8 +47,10 @@ export default {
 
         console.log(response)
         if (response.status === 202) {
-          setTimeout(this.getData(), 5000);
-          return;
+          sleep(500).then(() => {
+            setTimeout(this.getData(), 5000);
+            return;
+          });
         }
 
         if (response.status === 200) {
