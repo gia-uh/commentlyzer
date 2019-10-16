@@ -1,4 +1,4 @@
-version: '2'
+version: "2"
 services:
   front:
     build:
@@ -7,9 +7,10 @@ services:
     image: front-prensa
     container_name: "front-debug"
 
-    # command: cd / && python /backend-observatorio/production.py
+    command: ./node_modules/@vue/cli-service/bin/vue-cli-service.js  serve --host 0.0.0.0 --port 8081
+
     ports:
-      - 8080:8080
+      - 8080:8081
 
     volumes:
       - ./Commenlyzer-front:/app
