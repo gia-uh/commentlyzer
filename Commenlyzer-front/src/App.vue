@@ -1,23 +1,40 @@
 <template>
   <v-app>
-    <v-toolbar app :clipped-left="clipped" class="hidden-sm-and-down">
+    <v-toolbar
+      app
+      :clipped-left="clipped"
+      class="hidden-sm-and-down white--text"
+      color="rgba(66, 185, 131,1)"
+    >
       <v-layout row class="text-xs-center" justify-center align-center>
         <v-toolbar-title style="cursor: pointer;" @click.stop="$router.replace('/')" v-text="title"></v-toolbar-title>
 
         <v-spacer></v-spacer>
-        <v-text-field light placeholder="Coloca la Url aqui" v-model="urlsearch" align-end></v-text-field>
+        <v-text-field
+          class="custom-placeholer-color"
+          light
+          placeholder="Coloca la Url aqui"
+          v-model="urlsearch"
+          align-end
+        ></v-text-field>
         <v-btn icon @click.stop="getpage">
-          <v-icon>fas fa-paper-plane</v-icon>
+          <v-icon color="white">fas fa-paper-plane</v-icon>
         </v-btn>
       </v-layout>
     </v-toolbar>
-    <v-card elevation-24 class="hidden-md-and-up">
+    <v-card elevation-24 class="hidden-md-and-up white--text" color="rgba(66, 185, 131,1)">
       <v-layout column class="text-xs-center" align-center>
         <v-toolbar-title style="cursor: pointer;" @click.stop="$router.replace('/')" v-text="title"></v-toolbar-title>
         <v-layout row>
-          <v-text-field light placeholder="Coloca la Url aqui" v-model="urlsearch" align-end></v-text-field>
+          <v-text-field
+            light
+            placeholder="Coloca la Url aqui"
+            class="custom-placeholer-color"
+            v-model="urlsearch"
+            align-end
+          ></v-text-field>
           <v-btn icon @click.stop="getpage">
-            <v-icon>fas fa-paper-plane</v-icon>
+            <v-icon color="white">fas fa-paper-plane</v-icon>
           </v-btn>
         </v-layout>
       </v-layout>
@@ -110,6 +127,12 @@
   </v-app>
 </template>
 
+<style >
+.custom-placeholer-color input::placeholder {
+  color: white !important;
+  opacity: 1;
+}
+</style>
 <script>
 import { eventBus, baseUrl, data } from "./main.js";
 
