@@ -42,7 +42,7 @@
 
               <v-card-title>
                 <div>
-                  <a text-align="center" class="headline" @click="getpage(article.id)">{{article.title}}</a>
+                  <a text-align="center" class="headline" @click="getpage(article.id)"><font :color="getcolor(article.opinion)">{{article.title}}</font></a>
                 </div>
               </v-card-title>
               <v-card-actions>
@@ -245,6 +245,12 @@ export default {
             // return json;
         });
       });
+    },
+    getcolor: function(name){
+      console.log(name);
+      if(name == "Negativo"){return "blue";}
+      else if(name == "Positivo"){return "orange";}
+      else{return "red";}
     },
     getmedia: function(med) {
       if (med == "CubaDebate") {

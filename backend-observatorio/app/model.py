@@ -105,6 +105,9 @@ class Manager:
     def inser_ops(Id: ObjectId, op: dict, upadtet):
         obj = {'opinion': op, 'super': Id, 'last_update': upadtet}
         Manager.opinions.insert_one(obj)
+        name = list(sorted(op.items(),key=lambda x:x[1], reverse=True))[0][0]
+        Manager.articles.update_one(
+            {'_id': Id}, {"$set": {"opinion": name}}, upsert=False)
 
     @staticmethod
     def get_ops(Id: ObjectId):
@@ -114,6 +117,9 @@ class Manager:
     def update_ops(Id: ObjectId, op: dict, updatet):
         Manager.opinions.update_one(
             {'super': Id}, {"$set": {"last_update": updatet, "opinion": op}}, upsert=False)
+        name = list(sorted(op.items(),key=lambda x:x[1], reverse=True))[0][0]
+        Manager.articles.update_one(
+            {'_id': Id}, {"$set": {"opinion": name}}, upsert=False)
 
     @staticmethod
     def get_article(Id: ObjectId)->dict:
@@ -225,7 +231,7 @@ class Articles():
                 'img': article['img'],
                 "pub_date": article['pub_date'],
                 'url': article['url'],
-
+                'opinion': article['opinion']
             })
 
         return ans
@@ -250,7 +256,7 @@ class Articles():
                 'img': article['img'],
                 "pub_date": article['pub_date'],
                 'url': article['url'],
-
+                'opinion': article['opinion']
             })
 
         return ans
@@ -277,7 +283,7 @@ class Articles():
                 'img': article['img'],
                 "pub_date": article['pub_date'],
                 'url': article['url'],
-
+                'opinion': article['opinion']
             })
         return ans, nn
 

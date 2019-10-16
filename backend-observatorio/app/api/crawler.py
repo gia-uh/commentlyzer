@@ -50,6 +50,8 @@ def get_page():
     #     i['text'] = tt
     #     comments_clean.append(i)
 
+    dat['opinion'] = 'Neutro'
+
     app.logger.info('inserting Notice and Comments')
     # id = Manager.insert_art(data.data)
     id = Manager.new_entry(data.data, comments)
