@@ -46,7 +46,7 @@
                 </div>
               </v-card-title>
               <v-card-actions>
-                <v-btn flat color="purple" @click="gotosite(article.url)">Ver Noticia Original&nbsp;&nbsp;
+                <v-btn flat color="purple" @click="gotosite(article.url)">Ver En&nbsp;&nbsp;
   <svg v-if="getmedian(article.media)==0"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:cc="http://creativecommons.org/ns#"
