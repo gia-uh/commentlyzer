@@ -146,7 +146,7 @@ export default {
       aboutUs: {
         activate: false,
         text:
-          "Commentlyzer está desarrollado por el Grupo de Inteligencia Artificial de la Universidad de la Habana (GIA) . El grupo está dirigido por el Doctor en Ciencias Yudivián Almeida. \nAgradecimientos especiales a Lawrence Gil, sin quien este proyecto definitivamente hubiera salido, pero no hubiera quedado tan bonito.",
+          "Commentlyzer está desarrollado por el Grupo de Inteligencia Artificial de la Universidad de la Habana (GIA) . El grupo está dirigido por el Doctor en Ciencias Yudivián Almeida. \n",
         links: [
           // {
           //   icon:"fab fa-github",
