@@ -224,7 +224,13 @@
             ></v-pagination></v-container>
       </v-card>
     </v-slide-y-transition>
+    <v-card
+          class="pb-8"
+      >
+      &nbsp;
+      </v-card>
     </v-flex>
+    
   </v-layout>
   <!-- </v-container> -->
 </template>
