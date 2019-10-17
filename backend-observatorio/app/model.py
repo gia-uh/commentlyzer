@@ -158,7 +158,7 @@ class Manager:
 
 class Articles():
     __slots__ = ('id', 'article')
-    arts_per_page = 12
+    arts_per_page = 8
 
     def __init__(self, id):
         if isinstance(id, str):
