@@ -81,9 +81,10 @@ def update_article(id):
     data = Crawler(app.config['PROXY_CONFIG'])
     data.request(art['url'])
     cc = data.comment
+    logger.debug("{0}".format(len(cc)))
     if len(cc) > art['comments']:
         cc = cc[art['comments']:]
-        Manager.add_comments(artt.id, cc)
+        Manager.add_comments_now(artt.id, cc)
     Manager.update_last_update(artt.id)
     return jsonify({'id': str(id)})
 

@@ -141,11 +141,24 @@ class Manager:
     @staticmethod
     def add_comments(Id: ObjectId, comments_l: List[dict]):
         for i in comments_l:
-            if Manager.comments.find(i):
+            if Manager.comments.find_one({'super': Id,'text': i['text']}):
                 pass
             else:
                 i['super'] = Id
+                if '_id' in i:
+                    i.pop('_id')
                 Manager.comments.insert_one(i)
+        #article = Manager.articles.find_one_or_404({'_id': Id})
+        #actualiza la fecha de upadte del articulo
+        #article['update_time'] = datetime.now()
+
+    @staticmethod
+    def add_comments_now(Id: ObjectId, comments_l: List[dict]):
+        for i in comments_l:
+            i['super'] = Id
+            if '_id' in i:
+                i.pop('_id')
+            Manager.comments.insert_one(i)
         #article = Manager.articles.find_one_or_404({'_id': Id})
         #actualiza la fecha de upadte del articulo
         #article['update_time'] = datetime.now()
