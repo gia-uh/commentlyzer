@@ -153,7 +153,7 @@
               <v-flex>
                 <h1 class="hidden-sm-and-down">{{article.title}}</h1>
                 <h3 class="hidden-md-and-up mt-0">{{article.title}}</h3>
-                <samp>{{article.author}}</samp>
+                <!--<samp>{{article.author}}</samp>-->
                 <spam>{{media}} {{article.last_update | moment('from', 'now') }}</spam>
               </v-flex>
             </v-layout>

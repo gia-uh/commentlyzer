@@ -70,6 +70,7 @@
                   <a text-align="center" class="headline" @click="getpage(article.id)"><font :color="getcolor(article.opinion)">{{article.title}}</font></a>
                 </div>
               </v-card-title>
+              <v-layout justify-center>
               <v-card-actions>
                 <v-btn flat color="#42b983" @click="gotosite(article.url)">Ver En&nbsp;&nbsp;
   <svg v-if="getmedian(article.media)==0"
@@ -205,6 +206,7 @@
                 <v-spacer></v-spacer>
                 <v-btn flat @click="updateart(article)">Actualizar</v-btn>
               </v-card-actions>
+              </v-layout>
             </v-layout>
 
             </v-container>
