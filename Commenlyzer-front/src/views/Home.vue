@@ -13,10 +13,35 @@
               align-center
               v-on:keyup.enter="gotarticle"
           ></v-text-field>
-
           <v-btn icon @click.stop="gotarticle">
             <v-icon>fas fa-search</v-icon>
           </v-btn>
+        </v-layout>
+        <v-layout align-center justify-space-around>
+          <v-chip
+            class="ma-2"
+            color="orange"
+            text-color="white"
+            x-large
+          >
+            Positivo
+          </v-chip>
+          <v-chip
+            class="ma-2"
+            color="blue"
+            text-color="white"
+            x-large
+          >
+            Negativo
+          </v-chip>
+          <v-chip
+            class="ma-2"
+            color="red"
+            text-color="white"
+            x-large
+          >
+            Neutro
+          </v-chip>
         </v-layout>
       <v-layout row wrap>
         <v-flex v-for="(article, index) in articles" class="is-flex" :key="index" xs12  sm6 md4 lg3 >
@@ -24,7 +49,7 @@
             <v-container fill-height fluid pa-2>
             <v-layout row wrap fill-height>
               <v-flex  lg12 md12 sm12 xs12 >
-<span class="grey--text centerv">
+<span class="centerv">
                   {{article.media}}
                 </span>
               </v-flex>
@@ -46,7 +71,7 @@
                 </div>
               </v-card-title>
               <v-card-actions>
-                <v-btn flat color="purple" @click="gotosite(article.url)">Ver En&nbsp;&nbsp;
+                <v-btn flat color="#42b983" @click="gotosite(article.url)">Ver En&nbsp;&nbsp;
   <svg v-if="getmedian(article.media)==0"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:cc="http://creativecommons.org/ns#"
