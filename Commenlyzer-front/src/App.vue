@@ -187,6 +187,13 @@ export default {
   },
   methods: {
     getpage() {
+      console.log('Tiriza')
+      if (!this.urlsearch.includes('cubadebate') && !this.urlsearch.includes('granma')){
+      this.errormsg = 'Las url que estamos analizando en estos momentes solo son granma.cu y cubadebate.cu. Pronto añadiremos incorporaremos más fuentes para analizar.';
+      this.dialoge = true;
+      return
+      }
+
       data.url = this.urlsearch;
       // eslint-disable-next-line
       console.log(this.urlsearch);
