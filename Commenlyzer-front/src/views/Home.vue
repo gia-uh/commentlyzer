@@ -23,7 +23,11 @@
             color="orange"
             text-color="white"
             x-large
+            @click.stop="update_opinion_filter('Positivo')"
           >
+          <v-avatar left v-if="opinion_filter=='Positivo'">
+            <v-icon>fas fa-search</v-icon>
+          </v-avatar>
             Positivo
           </v-chip>
           <v-chip
@@ -31,7 +35,11 @@
             color="blue"
             text-color="white"
             x-large
+            @click.stop="update_opinion_filter('Negativo')"
           >
+          <v-avatar left v-if="opinion_filter=='Negativo'">
+            <v-icon>fas fa-search</v-icon>
+          </v-avatar>
             Negativo
           </v-chip>
           <v-chip
@@ -39,7 +47,11 @@
             color="red"
             text-color="white"
             x-large
+            @click.stop="update_opinion_filter('Neutro')"
           >
+          <v-avatar left v-if="opinion_filter=='Neutro'">
+            <v-icon>fas fa-search</v-icon>
+          </v-avatar>
             Neutro
           </v-chip>
         </v-layout>
@@ -230,7 +242,6 @@
       &nbsp;
       </v-card>
     </v-flex>
-    
   </v-layout>
   <!-- </v-container> -->
 </template>
@@ -250,7 +261,8 @@ export default {
       waiting: false,
       articles: [],
       loading: true,
-      pagefilt: ""
+      pagefilt: "",
+      opinion_filter: ""
     };
   },
   methods: {
@@ -263,7 +275,7 @@ export default {
     gotarticle: function() {
         this.loading = false;
         this.page=1;
-        fetch(baseUrl + '/article/paginate?page='+ `${this.page}` + '&filter='+ `${this.pagefilt}`).then(response => {
+        fetch(baseUrl + '/article/paginate?page='+ `${this.page}` + '&filter='+ `${this.pagefilt}`+ '&opfilter='+ `${this.opinion_filter}`).then(response => {
 
         if (response.status != 200) {
             // eslint-disable-next-line
@@ -279,8 +291,17 @@ export default {
         });
       });
     },
+    update_opinion_filter: function(name){
+      if(this.opinion_filter==name){
+        this.opinion_filter="";
+      } else {
+        this.opinion_filter=name;
+      }
+      // console.log(name);
+      this.gotarticle();
+    },
     getcolor: function(name){
-      console.log(name);
+      // console.log(name);
       if(name == "Negativo"){return "blue";}
       else if(name == "Positivo"){return "orange";}
       else{return "red";}
@@ -321,7 +342,7 @@ export default {
   watch: {
         // eslint-disable-next-line
         'page': function(val, oldVal){
-            fetch(baseUrl + '/article/paginate?page='+ `${this.page}` + '&filter='+ `${this.pagefilt}`).then(response => {
+            fetch(baseUrl + '/article/paginate?page='+ `${this.page}` + '&filter='+ `${this.pagefilt}`+ '&opfilter='+ `${this.opinion_filter}`).then(response => {
 
         if (response.status != 200) {
             // eslint-disable-next-line

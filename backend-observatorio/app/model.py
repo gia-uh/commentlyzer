@@ -275,9 +275,14 @@ class Articles():
         return ans
 
     @staticmethod
-    def top_page_filter(page, filt):
+    def top_page_filter(page, filt, opfilt):
 
-        articles = mongo.db.Articles.find({'title': {'$regex': filt, '$options': "i"}})
+        if filt and not opfilt:
+            articles = mongo.db.Articles.find({'title': {'$regex': filt, '$options': "i"}})
+        elif opfilt and not filt:
+            articles = mongo.db.Articles.find({'opinion': opfilt})
+        else:
+            articles = mongo.db.Articles.find({'opinion': opfilt, 'title': {'$regex': filt, '$options': "i"}})
         nn = articles.count()
         articles = articles.sort(
             [('last_update', pymongo.DESCENDING)]).skip((page-1)*Articles.arts_per_page).limit(Articles.arts_per_page)

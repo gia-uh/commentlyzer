@@ -188,6 +188,7 @@ export default {
   methods: {
     getpage() {
       data.url = this.urlsearch;
+      // eslint-disable-next-line
       console.log(this.urlsearch);
       fetch(baseUrl + "/getpage", {
         method: "post",
@@ -200,6 +201,7 @@ export default {
     },
 
     updatePage() {
+      // eslint-disable-next-line
       console.log("Updating site");
       fetch(baseUrl + "/article/update/" + this.article.id, {
         method: "get",
@@ -215,12 +217,15 @@ export default {
       //   this.$router.replace("/error/" + response.status);
       //   return;
       // }
+      // eslint-disable-next-line
       console.log(response);
+      // eslint-disable-next-line
       console.log(response.status === 202);
 
       if (response.status === 202) {
         response.json().then(json => {
           // console.log('La tiza');
+          // eslint-disable-next-line
           console.log(json.id);
           // console.log('La tiza');
           this.$router.push("/wait/" + json.id);

@@ -26,9 +26,10 @@ def get_topten_paginate():
     # return jsonify({'funciona':1})
     page = int(request.args.get('page', '1'))
     filt = request.args.get('filter', '')
+    opfilt = request.args.get('opfilter', '')
     # logger.debug('page: '+str(page))
     # logger.debug('filter: '+str(filt)+'\ttype: '+str(type(filt)))
-    if not filt:
+    if not filt and not opfilt:
         articles = Articles.top_page(page)
         na = Articles.count_articles()
         ap = Articles.arts_per_page
@@ -36,7 +37,7 @@ def get_topten_paginate():
         rest = na % ap
         nn += int(bool(rest != 0))
     else:
-        articles, na = Articles.top_page_filter(page, filt)
+        articles, na = Articles.top_page_filter(page, filt, opfilt)
         ap = Articles.arts_per_page
         nn = na//ap
         rest = na % ap
