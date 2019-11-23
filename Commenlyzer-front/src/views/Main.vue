@@ -154,7 +154,7 @@
                 <h1 class="hidden-sm-and-down">{{article.title}}</h1>
                 <h3 class="hidden-md-and-up mt-0">{{article.title}}</h3>
                 <!--<samp>{{article.author}}</samp>-->
-                <spam>{{media}} {{article.last_update | moment('from', 'now') }}</spam>
+                <span>{{media}} {{article.last_update | moment('from', 'now') }}</span>
               </v-flex>
             </v-layout>
           </v-card>
@@ -182,8 +182,8 @@
         </v-flex>
 
         <v-flex lg4 md4 sm4 xs12>
-          <v-card height="150px">
-            <v-card-text>
+          <v-card height="200px">
+            <v-card-text style="padding-top: 12%;">
               <h1>Comentarios:</h1>
               <h1>{{article.comments}}</h1>
             </v-card-text>
@@ -193,13 +193,14 @@
         <v-flex lg8 md8 sm8 xs12>
           <v-card>
             <v-card-title>
-              <span>Cantidad de comentarios</span>
+              <span>Evolución de los comentarios</span>
             </v-card-title>
             <line-chart
               :discrete="false"
               :data="timeRoute"
-              height="100px"
+              :download="true"
               class="paddingr paddingl"
+              height="150px"
             ></line-chart>
           </v-card>
         </v-flex>
@@ -209,7 +210,7 @@
             <pie-chart
               :data="pieRoute"
               :donut="false"
-              :options="{ 'fill': ['orange', 'blue', 'red']}"
+              :download="true"
               class="paddingb paddingt"
             ></pie-chart>
           </v-card>

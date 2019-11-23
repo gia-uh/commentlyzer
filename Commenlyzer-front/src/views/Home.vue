@@ -20,7 +20,7 @@
         <v-layout align-center justify-space-around>
           <v-chip
             class="ma-2"
-            color="orange"
+            :color="getcolor('Positivo')"
             text-color="white"
             x-large
             @click.stop="update_opinion_filter('Positivo')"
@@ -32,7 +32,19 @@
           </v-chip>
           <v-chip
             class="ma-2"
-            color="blue"
+            :color="getcolor('Neutro')"
+            text-color="white"
+            x-large
+            @click.stop="update_opinion_filter('Neutro')"
+          >
+          <v-avatar left v-if="opinion_filter=='Neutro'">
+            <v-icon>fas fa-search</v-icon>
+          </v-avatar>
+            Neutro
+          </v-chip>
+          <v-chip
+            class="ma-2"
+            :color="getcolor('Negativo')"
             text-color="white"
             x-large
             @click.stop="update_opinion_filter('Negativo')"
@@ -44,15 +56,15 @@
           </v-chip>
           <v-chip
             class="ma-2"
-            color="red"
-            text-color="white"
+            :color="getcolor('Objetivo')"
+            text-color="black"
             x-large
-            @click.stop="update_opinion_filter('Neutro')"
+            @click.stop="update_opinion_filter('Objetivo')"
           >
-          <v-avatar left v-if="opinion_filter=='Neutro'">
+          <v-avatar left v-if="opinion_filter=='Objetivo'">
             <v-icon>fas fa-search</v-icon>
           </v-avatar>
-            Neutro
+            Objetivo
           </v-chip>
         </v-layout>
       <v-layout row wrap>
@@ -302,9 +314,10 @@ export default {
     },
     getcolor: function(name){
       // console.log(name);
-      if(name == "Negativo"){return "blue";}
-      else if(name == "Positivo"){return "orange";}
-      else{return "red";}
+      if(name == "Negativo"){return "red";}
+      else if(name == "Positivo"){return "blue";}
+      else if(name == "Objetivo"){return "gray";}
+      else{return "green";}
     },
     getmedia: function(med) {
       if (med == "CubaDebate") {

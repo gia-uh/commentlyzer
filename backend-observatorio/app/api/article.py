@@ -4,9 +4,10 @@ from ..decorators import background
 from ..model import Manager, Articles
 from bson import ObjectId
 from datetime import datetime
-from Crawler import Crawler
+from CubaCrawler import Crawler
 import logging
 from flask import current_app as app
+from CommenlyzerEngine import extract_opinion
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger('articles')
@@ -68,6 +69,9 @@ def method_name():
     cc = data.comment
     if len(cc) > art['comments']:
         cc = cc[art['comments']:]
+        opinion = extract_opinion([comment['text'] for comment in cc])
+        for c,o in zip(cc,opinion):
+            c['opinion']=o
         Manager.add_comments(artt.id, cc)
     Manager.update_last_update(artt.id)
     article = Articles(id).to_article()
@@ -85,6 +89,9 @@ def update_article(id):
     logger.debug("{0}".format(len(cc)))
     if len(cc) > art['comments']:
         cc = cc[art['comments']:]
+        opinion = extract_opinion([comment['text'] for comment in cc])
+        for c,o in zip(cc,opinion):
+            c['opinion']=o
         Manager.add_comments_now(artt.id, cc)
     Manager.update_last_update(artt.id)
     return jsonify({'id': str(id)})

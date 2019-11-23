@@ -2,3 +2,5 @@ data
 backend-observatorio/app/static
 __pycache__
 *.log
+CubaCrawler
+CommenlyzerEngine

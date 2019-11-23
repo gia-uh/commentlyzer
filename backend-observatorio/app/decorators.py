@@ -6,8 +6,8 @@ from .api.errors import internal_server_error, bad_gateway_error
 import uuid
 import logging
 from .model import Manager
-from Crawler import UnreachebleURL, ProxyConfigError
-from Crawler.ScrapBase import BadStatusCode
+from CubaCrawler import UnreachebleURL, ProxyConfigError
+from CubaCrawler.ScrapBase import BadStatusCode
 import pickle
 from base64 import b64encode
 

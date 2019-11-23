@@ -43,7 +43,8 @@ def comments_opinion(id):
     return jsonify({
         'Positivo': 10,
         'Neutro': 10,
-        'Negativo': 10
+        'Negativo': 10,
+        'Objetivo': 10
     })
 
 
@@ -54,91 +55,101 @@ def entities(id):
         "entities": [
             {
                 "count": {
-                    "negative": 3,
-                    "neutral": 0,
-                    "positive": 1,
-                    "total": 4
+                    "Negativo": 3,
+                    "Neutro": 0,
+                    "Positivo": 1,
+                    "total": 4,
+                    'Objetivo': 1
                 },
                 "name": "Rectora"
             },
             {
                 "count": {
-                    "negative": 3,
-                    "neutral": 0,
-                    "positive": 1,
-                    "total": 4
+                    "Negativo": 3,
+                    "Neutro": 0,
+                    "Positivo": 1,
+                    "total": 4,
+                     'Objetivo': 1
                 },
                 "name": "Rector"
             },
             {
                 "count": {
-                    "negative": 2,
-                    "neutral": 0,
-                    "positive": 1,
-                    "total": 3
+                    "Negativo": 2,
+                    "Neutro": 0,
+                    "Positivo": 1,
+                    "total": 3,
+                     'Objetivo': 1
                 },
                 "name": "UCI"
             },
             {
                 "count": {
-                    "negative": 2,
-                    "neutral": 0,
-                    "positive": 1,
-                    "total": 3
+                    "Negativo": 2,
+                    "Neutro": 0,
+                    "Positivo": 1,
+                    "total": 3,
+                    'Objetivo': 1
                 },
                 "name": "Miriam"
             },
             {
                 "count": {
-                    "negative": 2,
-                    "neutral": 0,
-                    "positive": 1,
-                    "total": 3
+                    "Negativo": 2,
+                    "Neutro": 0,
+                    "Positivo": 1,
+                    "total": 3,
+                    'Objetivo': 1
                 },
                 "name": "UH"
             },
             {
                 "count": {
-                    "negative": 1,
-                    "neutral": 0,
-                    "positive": 1,
-                    "total": 2
+                    "Negativo": 1,
+                    "Neutro": 0,
+                    "Positivo": 1,
+                    "total": 2,
+                    'Objetivo': 1
                 },
                 "name": "Dra"
             },
             {
                 "count": {
-                    "negative": 1,
-                    "neutral": 1,
-                    "positive": 0,
-                    "total": 2
+                    "Negativo": 1,
+                    "Neutro": 1,
+                    "Positivo": 0,
+                    "total": 2,
+                    'Objetivo': 1
                 },
                 "name": "El proceso"
             },
             {
                 "count": {
-                    "negative": 0,
-                    "neutral": 1,
-                    "positive": 1,
-                    "total": 2
+                    "Negativo": 0,
+                    "Neutro": 1,
+                    "Positivo": 1,
+                    "total": 2,
+                    'Objetivo': 1
                 },
                 "name": "UCLV"
             },
             {
                 "count": {
-                    "negative": 1,
-                    "neutral": 0,
-                    "positive": 1,
-                    "total": 2
+                    "Negativo": 1,
+                    "Neutro": 0,
+                    "Positivo": 1,
+                    "total": 2,
+                    'Objetivo': 1
                 },
                 "name": "Nicado"
             },
             {
                 "count": {
-                    "negative": 0,
-                    "neutral": 0,
-                    "positive": 1,
-                    "total": 1
+                    "Negativo": 0,
+                    "Neutro": 0,
+                    "Positivo": 1,
+                    "total": 1,
+                    'Objetivo': 1
                 },
                 "name": "UNAH"
             }

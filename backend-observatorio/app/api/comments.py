@@ -5,8 +5,8 @@ from ..model import Manager
 from bson import ObjectId
 from pandas import DataFrame
 import pandas as pd
-from ..engine import extract_opinion
-from ..engine.entities import pipe_ents_detect
+from CommenlyzerEngine import extract_opinion
+from CommenlyzerEngine.entities import pipe_ents_detect
 from collections import Counter
 from flask import current_app as app
 import json
@@ -24,11 +24,14 @@ def timeline(id):
     df = DataFrame(data={'date': [comment['date'] for comment in comments], 'id': [
                    comment['_id'] for comment in comments]})
     if df.empty:
-        return jsonify({})
+        return jsonify([{},{},{},{}])
     fs = df.groupby(pd.Grouper(key='date', freq='3600S'))
+
+    # opinion = extract_opinion([comment['text'] for comment in comments])
 
     ans = [(str(v[0]), len(v[1])) for v in fs]
     tans = {}
+
     for i, (date, count) in enumerate(ans):
         if i == 0 or i == len(ans)-1:
             tans[date] = count
@@ -39,7 +42,102 @@ def timeline(id):
 
         tans[date] = count
 
-    return jsonify(tans)
+    # TODO: terminer lo de los graficos, copiar lo de arriba cuatro veces con un if en los list comprehension de el dataframe
+    df = DataFrame(data={'date': [comment['date'] for comment in comments if comment['opinion']=='Positivo'], 'id': [
+                   comment['_id'] for comment in comments if comment['opinion']=='Positivo']})
+    if df.empty:
+        tanspos = {}
+    else:
+        fs = df.groupby(pd.Grouper(key='date', freq='3600S'))
+
+        # opinion = extract_opinion([comment['text'] for comment in comments])
+
+        ans = [(str(v[0]), len(v[1])) for v in fs]
+        tanspos = {}
+
+        for i, (date, count) in enumerate(ans):
+            if i == 0 or i == len(ans)-1:
+                tanspos[date] = count
+                continue
+
+            if ans[i-1][1] == 0 and ans[i+1][1] == 0 and ans[i][1] == 0:
+                continue
+
+            tanspos[date] = count
+
+    df = DataFrame(data={'date': [comment['date'] for comment in comments if comment['opinion']=='Negativo'], 'id': [
+                   comment['_id'] for comment in comments if comment['opinion']=='Negativo']})
+    if df.empty:
+        tansneg = {}
+    else:
+        fs = df.groupby(pd.Grouper(key='date', freq='3600S'))
+
+        # opinion = extract_opinion([comment['text'] for comment in comments])
+
+        ans = [(str(v[0]), len(v[1])) for v in fs]
+        tansneg = {}
+
+        for i, (date, count) in enumerate(ans):
+            if i == 0 or i == len(ans)-1:
+                tansneg[date] = count
+                continue
+
+            if ans[i-1][1] == 0 and ans[i+1][1] == 0 and ans[i][1] == 0:
+                continue
+
+            tansneg[date] = count
+
+    df = DataFrame(data={'date': [comment['date'] for comment in comments if comment['opinion']=='Neutro'], 'id': [
+                   comment['_id'] for comment in comments if comment['opinion']=='Neutro']})
+    if df.empty:
+        tansneu = {}
+    else:
+        fs = df.groupby(pd.Grouper(key='date', freq='3600S'))
+
+        # opinion = extract_opinion([comment['text'] for comment in comments])
+
+        ans = [(str(v[0]), len(v[1])) for v in fs]
+        tansneu = {}
+
+        for i, (date, count) in enumerate(ans):
+            if i == 0 or i == len(ans)-1:
+                tansneu[date] = count
+                continue
+
+            if ans[i-1][1] == 0 and ans[i+1][1] == 0 and ans[i][1] == 0:
+                continue
+
+            tansneu[date] = count
+
+    df = DataFrame(data={'date': [comment['date'] for comment in comments if comment['opinion']=='Objetivo'], 'id': [
+                   comment['_id'] for comment in comments if comment['opinion']=='Objetivo']})
+    if df.empty:
+        tansobj = {}
+    else:
+        fs = df.groupby(pd.Grouper(key='date', freq='3600S'))
+
+        # opinion = extract_opinion([comment['text'] for comment in comments])
+
+        ans = [(str(v[0]), len(v[1])) for v in fs]
+        tansobj = {}
+
+        for i, (date, count) in enumerate(ans):
+            if i == 0 or i == len(ans)-1:
+                tansobj[date] = count
+                continue
+
+            if ans[i-1][1] == 0 and ans[i+1][1] == 0 and ans[i][1] == 0:
+                continue
+
+            tansobj[date] = count
+    res = [
+            {'name': 'Negativo', 'data': tansneg},
+            {'name': 'Neutro', 'data': tansneu},
+            {'name': 'Objetivo', 'data': tansobj},
+            {'name': 'Positivo', 'data': tanspos},
+            {'name': 'Total', 'data': tans}
+        ]
+    return jsonify(res)
 
 
 @api.route('/comments/opinion/<ObjectId:id>')
@@ -47,30 +145,35 @@ def comments_opinion(id):
     upt = Manager.get_last_update(ObjectId(id))
     ops = Manager.get_ops(ObjectId(id))
     updateb = False
+    inserteb = False
     if not(ops is None):
         if ops['last_update']==upt:
             return jsonify(ops['opinion'])
         else:
             updateb = True
+    else:
+        inserteb = True
 
-    comments = list(Manager.interval_comments(ObjectId(id), datetime.utcnow()))
-    if len(comments)==0:
+    opinion = list(map(lambda x: x['opinion'], Manager.interval_comments(ObjectId(id), datetime.utcnow())))
+    if len(opinion)==0:
         return  {
                     'Positivo': 0,
                     'Neutro': 0,
-                    'Negativo': 0
+                    'Negativo': 0,
+                    'Objetivo': 0
                 }
-    opinion = extract_opinion([comment['text'] for comment in comments])
+    #opinion = extract_opinion([comment['text'] for comment in comments])
 
     counter = Counter(opinion)
     ress = {
-        'Positivo': counter['Positive'],
-        'Neutro': counter['Neutral'],
-        'Negativo': counter['Negative']
+       'Positivo': counter['Positivo'],
+       'Neutro': counter['Neutro'],
+       'Negativo': counter['Negativo'],
+       'Objetivo': counter['Objetivo']
     }
     if updateb:
         Manager.update_ops(ObjectId(id), ress, upt)
-    else:
+    elif inserteb:
         Manager.inser_ops(ObjectId(id), ress, upt)
 
     return jsonify(ress)
@@ -78,15 +181,20 @@ def comments_opinion(id):
 
 @api.route('/comments/entities/<ObjectId:id>')
 def entities(id):
+    #TODO: optimizar esto, revisar cuando ya eiste la opinion
     upt = Manager.get_last_update(ObjectId(id))
     ents = Manager.get_ents(ObjectId(id))
     updateb = False
+    inserteb = False
     if not(ents is None):
         if ents['last_update']==upt:
             return jsonify({'entities': ents['entities'][:ENTITIES_NUMBER]})
         else:
             updateb = True
-    comments = list(map(lambda x: x['text'],Manager.interval_comments(ObjectId(id), datetime.utcnow())))
+    else:
+        inserteb = True
+    commentss = list(Manager.interval_comments(ObjectId(id), datetime.utcnow()))
+    comments = list(map(lambda x: x['text'],commentss))
     if len(comments)==0:
         return jsonify({'entities':[]})
     ents = pipe_ents_detect(comments)
@@ -94,22 +202,23 @@ def entities(id):
     for i in ents:
         if i:
             entss.update(i)
-    opinion = extract_opinion(comments)
+    opinion = list(map(lambda x: x['opinion'], commentss))
     ress = [{'name': i,
              'count':{ "total": 0,
-                    "positive": 0,
-                    'negative': 0,
-                    'neutral': 0}} for i in entss if len(i)>=2 and not(i.lower() in stopwordsd) and re.match('[a-zA-Z]',i)]
+                    'Positivo': 0,
+                    'Neutro': 0,
+                    'Negativo': 0,
+                    'Objetivo': 0}} for i in entss if len(i)>=2 and not(i.lower() in stopwordsd) and re.match('[a-zA-Z]',i)]
     for n,i in enumerate(comments):
         #i=Counter(i.split(' '))
         for j in ress:
             if j['name'] in i:
                 j['count']['total']+=1
-                j['count'][opinion[n].lower()]+=1
+                j['count'][opinion[n]]+=1
     ress = list(sorted(ress,key = lambda x:x['count']['total'],reverse=True))
     if updateb:
         Manager.update_ents(ObjectId(id), ress, upt)
-    else:
+    elif inserteb:
         Manager.inser_ents(ObjectId(id), ress, upt)
     print(ress[:ENTITIES_NUMBER])
     return jsonify({'entities':ress[:ENTITIES_NUMBER]})

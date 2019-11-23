@@ -18,10 +18,12 @@ Vue.use(VueMoment, {
     moment
 })
 
+export const color_scheme = ['red', 'green', 'gray','blue','orange'];
+
 Vue.use(VueLodash) // options is optional
 import VueChartkick from 'vue-chartkick'
 import EntitiesTable from './components/EntitiesTable.vue'
-
+VueChartkick.options = {colors: color_scheme};
 
 Vue.use(VueChartkick, { adapter: Chart })
 Vue.config.productionTip = false

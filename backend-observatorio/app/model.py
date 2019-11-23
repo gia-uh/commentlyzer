@@ -141,13 +141,13 @@ class Manager:
     @staticmethod
     def add_comments(Id: ObjectId, comments_l: List[dict]):
         for i in comments_l:
-            if Manager.comments.find_one({'super': Id,'text': i['text']}):
-                pass
-            else:
-                i['super'] = Id
-                if '_id' in i:
-                    i.pop('_id')
+            i['super'] = Id
+            if '_id' in i:
+                i.pop('_id')
+            try:
                 Manager.comments.insert_one(i)
+            except Exception as e:
+                print(e)
         #article = Manager.articles.find_one_or_404({'_id': Id})
         #actualiza la fecha de upadte del articulo
         #article['update_time'] = datetime.now()
@@ -158,7 +158,10 @@ class Manager:
             i['super'] = Id
             if '_id' in i:
                 i.pop('_id')
-            Manager.comments.insert_one(i)
+            try:
+                Manager.comments.insert_one(i)
+            except Exception as e:
+                print(e)
         #article = Manager.articles.find_one_or_404({'_id': Id})
         #actualiza la fecha de upadte del articulo
         #article['update_time'] = datetime.now()

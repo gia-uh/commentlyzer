@@ -22,7 +22,7 @@
       <td class="text-xs-right align-content-right">
         <span>
         {{ props.item.count.total }}
-        <peity :type="'pie'" :options="{ 'fill': ['orange', 'blue', 'red']}" :data="lineData(props.item.count)"></peity>
+        <peity :type="'pie'" :options="pcolors" :data="lineData(props.item.count)"></peity>
         </span>
       </td>
     </tr>
@@ -32,8 +32,8 @@
 
 
 <script>
-import Peity from 'vue-peity'
-import { baseUrl } from "../main.js";
+import Peity from 'vue-peity';
+import {color_scheme} from '../main.js';
 //import VueChartkick from 'vue-chartkick'
 export default {
   components: {
@@ -48,12 +48,13 @@ export default {
         { text: "Menciones", value: "count", sortable: false, align: "right", style:"font-size: 20px;", class: "text-xs-right"},
         // { text: "Actions", value: "id", sortable: false }
       ],
-      loading: false
+      loading: false,
+      pcolors: { 'fill': color_scheme}
     };
   },
   methods: {
     lineData (data) {
-      return `${data.positive},${data.negative},${data.neutral}`
+      return `${data.Negativo},${data.Neutro},${data.Objetivo},${data.Positivo},`
 
       //return "5,5,5";
     }

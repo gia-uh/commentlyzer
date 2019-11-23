@@ -1,6 +1,9 @@
 from flask import request, jsonify
 from flask import current_app as app
-from Crawler import Crawler
+from CubaCrawler import Crawler
+from CommenlyzerEngine import extract_opinion
+from bson import ObjectId
+from collections import Counter
 from . import api
 from ..decorators import background_tasks, background_optional
 from .article import get_data
@@ -50,11 +53,22 @@ def get_page():
     #     i['text'] = tt
     #     comments_clean.append(i)
 
+    opinion = extract_opinion([comment['text'] for comment in comments])
+    for c,o in zip(comments,opinion):
+        c['opinion']=o
+    counter = Counter(opinion)
+    ress = {
+       'Positivo': counter['Positivo'],
+       'Neutro': counter['Neutro'],
+       'Negativo': counter['Negativo'],
+       'Objetivo': counter['Objetivo']
+    }
     dat['opinion'] = 'Neutro'
 
     app.logger.info('inserting Notice and Comments')
     # id = Manager.insert_art(data.data)
     id = Manager.new_entry(data.data, comments)
+    Manager.inser_ops(ObjectId(id),ress, tt)
 
     return jsonify({'id': str(id)})
 
