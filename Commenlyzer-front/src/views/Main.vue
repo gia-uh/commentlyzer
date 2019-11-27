@@ -205,7 +205,7 @@
           </v-card>
         </v-flex>
 
-        <v-flex style="align-self: flex-start;" class="down" lg6 md6 sm6 xs12>
+        <v-flex style="align-self: flex-start;" class="down" lg4 md4 sm4 xs12>
           <v-card>
             <pie-chart
               :data="pieRoute"
@@ -216,7 +216,7 @@
           </v-card>
         </v-flex>
 
-        <v-flex class="down" lg6 md6 sm6 xs12>
+        <v-flex class="down" lg4 md4 sm4 xs12>
           <v-card>
             <v-card-title></v-card-title>
             <v-responsive>
@@ -224,6 +224,19 @@
             </v-responsive>
           </v-card>
         </v-flex>
+
+        <v-flex style="align-self: flex-start;" class="down" lg4 md4 sm4 xs12>
+            <v-card>
+                <wordcloud
+                :data="defaultWords"
+                nameKey="name"
+                valueKey="value"
+                color="Accent">
+                </wordcloud>
+            </v-card>
+        </v-flex>
+
+
         <v-container class="text-xs-center">
           <social-sharing
             :url="actual_route"
@@ -314,7 +327,10 @@ export default {
       pieRoute: baseUrl2 + "/comments/opinion/",
       timeRoute: baseUrl + "/comments/time/",
       entitiesRoute: "/comments/entities/",
-      actual_route: window.location.href
+      wcRoute: "/comments/wrodcloud/",
+      actual_route: window.location.href,
+      myColors: ['#1f77b4', '#629fc9', '#94bedb', '#c9e0ef'],
+      defaultWords: [ ]
     };
   },
   methods: {
@@ -383,6 +399,24 @@ export default {
         });
       });
     },
+
+    getWC: function() {
+      /*getdata(this.entitiesRoute).then(json => {
+        this.entities = json.entities;
+        console.log(this.entities);
+      });*/
+      fetch(baseUrl2 + this.wcRoute+ this.$route.params.id).then(response => {
+        if (response.status != 200) {
+          // eslint-disable-next-line
+          console.log("Error Do stuff here");
+        }
+
+        response.json().then(json => {
+          this.defaultWords = json.words;
+        });
+      });
+    },
+
     getmedio: function(med) {
       //console.log("getmedio");
       if (med == "CubaDebate") {
@@ -397,6 +431,7 @@ export default {
     this.getData();
     this.getSummary();
     this.getEntities();
+    this.getWC();
   },
   created() {
     this.pieRoute += this.$route.params.id;

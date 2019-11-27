@@ -12,6 +12,7 @@ import datetime
 from hashlib import sha1
 import logging
 import re
+from .comments import stopwordsd
 from ..decorators import background
 
 sps = re.compile('  +')
@@ -54,8 +55,12 @@ def get_page():
     #     comments_clean.append(i)
 
     opinion = extract_opinion([comment['text'] for comment in comments])
+    words = Counter()
     for c,o in zip(comments,opinion):
         c['opinion']=o
+        for j in c['text'].split(' '):
+            if not(j in stopwordsd):
+                words[j]+=1
     counter = Counter(opinion)
     ress = {
        'Positivo': counter['Positivo'],
@@ -68,7 +73,9 @@ def get_page():
     app.logger.info('inserting Notice and Comments')
     # id = Manager.insert_art(data.data)
     id = Manager.new_entry(data.data, comments)
+    words = [{"name": i,"value":j} for i,j in sorted(words.items(),key=lambda x:x[1], reverse=True)]
     Manager.inser_ops(ObjectId(id),ress, tt)
+    Manager.inser_wc(ObjectId(id),words, tt)
 
     return jsonify({'id': str(id)})
 

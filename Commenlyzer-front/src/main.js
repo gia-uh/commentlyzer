@@ -7,6 +7,7 @@ import '@fortawesome/fontawesome-free/css/all.css'
 import VueLodash from 'vue-lodash'
 import Chart from 'chart.js'
 import VueMoment from 'vue-moment'
+import wordcloud from 'vue-wordcloud'
 
 var SocialSharing = require('vue-social-sharing');
 Vue.use(SocialSharing);
@@ -28,6 +29,8 @@ VueChartkick.options = {colors: color_scheme};
 Vue.use(VueChartkick, { adapter: Chart })
 Vue.config.productionTip = false
 Vue.component("entities", EntitiesTable)
+
+Vue.component("wordcloud", wordcloud);
 
 const development = process.env.NODE_ENV === 'development';
 export const baseUrl = development ? 'http://localhost:8000/api' : '/api';

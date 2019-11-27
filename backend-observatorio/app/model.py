@@ -14,6 +14,7 @@ class Manager:
     comments = mongo.db["Comments"]
     entities = mongo.db["Entities"]
     opinions = mongo.db["Opinions"]
+    wordcloud = mongo.db["WordCloud"]
     tasks = mongo.db['Tasks']
 
     @staticmethod
@@ -100,6 +101,20 @@ class Manager:
     def update_ents(Id: ObjectId, ents_l: List[dict], updatet):
         Manager.entities.update_one(
             {'super': Id}, {"$set": {"last_update": updatet, "entities": ents_l}}, upsert=False)
+
+    @staticmethod
+    def inser_wc(Id: ObjectId, wc_l: List[dict], upadtet):
+        obj = {'words': wc_l, 'super': Id, 'last_update': upadtet}
+        Manager.wordcloud.insert_one(obj)
+
+    @staticmethod
+    def get_wc(Id: ObjectId):
+        return Manager.wordcloud.find_one({'super': Id})
+
+    @staticmethod
+    def update_wc(Id: ObjectId, wc_l: List[dict], updatet):
+        Manager.wordcloud.update_one(
+            {'super': Id}, {"$set": {"last_update": updatet, "words": wc_l}}, upsert=False)
 
     @staticmethod
     def inser_ops(Id: ObjectId, op: dict, upadtet):
