@@ -54,3 +54,5 @@ Werkzeug==0.14.1
 wrapt==1.10.11
 zope.event==4.4
 zope.interface==4.5.0
+CubaCrawler
+CommenlyzerEngine

@@ -11,6 +11,8 @@ services:
     #   - backend-observatorio:/data/db
 
     # command: cd / && python /backend-observatorio/production.py
+    env_file:
+     - ./backend-observatorio/default.env
     ports:
       - 8000:8000
     links:
