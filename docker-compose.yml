@@ -10,9 +10,8 @@ services:
     # volumes:
     #   - backend-observatorio:/data/db
 
-    # command: cd / && python /backend-observatorio/production.py
-    env_file:
-     - ./backend-observatorio/default.env
+    command: python /backend-observatorio/production.py
+
     ports:
       - 8000:8000
     links:
@@ -20,11 +19,12 @@ services:
     depends_on:
       - mongodb
     environment:
+      - CLASSIFIER2_MODEL_PATH=/models/so.joblib
+      - CLASSIFIER_MODEL_PATH=/models/pnn.joblib
+      - VECTORIZER_MODEL_PATH=/models/cv.joblib
       - PYTHONPATH=/Crawler
       - MONGO_URI=mongodb://mongodb:27017/elchismoso
       - REAL_PROCESS=1
-      - VECTORIZER_MODEL_PATH=/models/engine/serialized/serialized_opinion_vectorizer
-      - CLASSIFIER_MODEL_PATH=/models/engine/serialized/serialized_opinion_classifier
 
   mongodb:
     image: mongo:4.0.6

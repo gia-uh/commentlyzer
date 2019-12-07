@@ -14,6 +14,7 @@ WORKDIR /backend-observatorio
 COPY ./backend-observatorio/requeriments.txt /requeriments.txt
 # COPY ./backend-observatorio/requeriments.txt /requeriments.txt
 RUN pip install -r /requeriments.txt && rm -rf /root/.cache
+RUN python -m spacy download es_core_news_md
 COPY ./backend-observatorio .
 WORKDIR /
 # COPY /backend-observatorio/app/static/index.html
