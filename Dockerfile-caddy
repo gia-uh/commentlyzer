@@ -1,0 +1,10 @@
+FROM node as build-stage
+WORKDIR /app
+COPY Commenlyzer-front/package*.json ./
+RUN npm install
+COPY Commenlyzer-front .
+RUN npm run build
+
+FROM fabric8/alpine-caddy:latest as proxy
+COPY --from=build-stage /app/dist /var/www/html
+COPY ./Caddyfile /etc/Caddyfile

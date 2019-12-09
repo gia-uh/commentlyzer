@@ -1,5 +1,19 @@
 version: '2'
+
 services:
+  caddy:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-caddy
+    image: caddy-api-proxy
+    container_name: caddy-api-proxy
+    ports:
+        - "2015:2015"
+    links:
+      - server
+    depends_on:
+      - server
+
   server:
     build:
       context: .

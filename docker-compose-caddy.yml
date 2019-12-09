@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  caddy:
+    image: fabric8/alpine-caddy:latest
+    container_name: caddy-api-proxy
+    ports:
+        - "2015:2015"
+    volumes:
+        - ./Caddyfile:/etc/Caddyfile
+        - ./Commenlyzer-front/dist:/var/www/html
+        #- ./.caddy:/root/.caddy
