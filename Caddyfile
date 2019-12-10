@@ -1,11 +1,11 @@
-localhost {
-    #gzip
+0.0.0.0 {
+    gzip
     log stdout
     errors stdout
     cors
     root /var/www/html
-    #proxy /api server:8000 {
-    #    header_upstream Accept-Encoding {>Accept-Encoding}
-    #}
+    proxy /api server:8000 {
+        header_upstream Accept-Encoding {>Accept-Encoding}
+    }
     tls off
 }

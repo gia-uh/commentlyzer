@@ -13,6 +13,8 @@ services:
       - server
     depends_on:
       - server
+    #volumes:
+    #    - ./Caddyfile:/etc/Caddyfile
 
   server:
     build:
@@ -20,9 +22,6 @@ services:
       dockerfile: ./backend-observatorio/Dockerfile
     image: prensa
     container_name: "prensa"
-
-    # volumes:
-    #   - backend-observatorio:/data/db
 
     command: python /backend-observatorio/production.py
 
@@ -50,7 +49,7 @@ services:
       - prensamongodata:/data/db
     ports:
         - 27017:27017
-    command: mongod --wiredTigerCacheSizeGB=2
+    command: mongod --wiredTigerCacheSizeGB=1
     # --wiredTigerCacheSizeGB=n limit the amount of ram used to n
 
 volumes:
