@@ -229,23 +229,35 @@ def comments_wc(id):
     wc = Manager.get_wc(ObjectId(id))
     updateb = False
     inserteb = False
-    if not(wc is None):
-        if wc['last_update']==upt:
-            return jsonify({'words':wc['words'][:WRODS_NUMBER]})
-        else:
-            updateb = True
-    else:
-        inserteb = True
+    #if not(wc is None):
+    #    if wc['last_update']==upt:
+    #        return jsonify({'words':wc['words'][:WRODS_NUMBER]})
+    #    else:
+    #        updateb = True
+    #else:
+    #    inserteb = True
 
-    coms = list(map(lambda x: x['text'], Manager.interval_comments(ObjectId(id), datetime.utcnow())))
+    coms = list(map(lambda x: (x['text'],x['opinion']), Manager.interval_comments(ObjectId(id), datetime.utcnow())))
     if len(coms)==0:
         return  jsonify({'words':[]})
     words = Counter()
-    for c in coms:
+    wordspol = {}
+    for c, op in coms:
         for j in c.split(' '):
             if not(j in stopwordsd):
                 words[j]+=1
-    words = [{"name": i,"value":j} for i,j in sorted(words.items(),key=lambda x:x[1],reverse=True)]
+                if j in wordspol:
+                    wordspol[j][op]+=1
+                    wordspol[j]['total']+=1
+                else:
+                    wordspol[j]={ "total": 0,
+                        'Positivo': 0,
+                        'Neutro': 0,
+                        'Negativo': 0,
+                        'Objetivo': 0}
+                    wordspol[j][op]+=1
+                    wordspol[j]['total']+=1
+    words = [{"name": i,"value":j,'wdata':wordspol[i]} for i,j in sorted(words.items(),key=lambda x:x[1],reverse=True)]
     if updateb:
         Manager.update_wc(ObjectId(id), words, upt)
     elif inserteb:

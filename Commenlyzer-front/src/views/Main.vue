@@ -231,7 +231,7 @@
                 :data="defaultWords"
                 nameKey="name"
                 valueKey="value"
-                color="Accent">
+                :color="myColors">
                 </wordcloud>
             </v-card>
         </v-flex>
@@ -413,6 +413,7 @@ export default {
 
         response.json().then(json => {
           this.defaultWords = json.words;
+          // escribir aqui lo de generar el arry de colores en base a lo que hay en wdata para cada palabra
         });
       });
     },

@@ -156,3 +156,92 @@ def entities(id):
         ]
     }
     )
+
+@api.route('/comments/wrodcloud/<ObjectId:id>')
+def comments_wc(id):
+
+    data = {
+        "words": [
+            {
+                "name": "Fidel",
+                "value": 96
+            },
+            {
+                "name": ">",
+                "value": 78
+            },
+            {
+                "name": "siempre",
+                "value": 65
+            },
+            {
+                "name": "cada",
+                "value": 57
+            },
+            {
+                "name": "ser",
+                "value": 43
+            },
+            {
+                "name": "pueblo",
+                "value": 43
+            },
+            {
+                "name": "FIDEL",
+                "value": 41
+            },
+            {
+                "name": "mundo",
+                "value": 36
+            },
+            {
+                "name": "más",
+                "value": 35
+            },
+            {
+                "name": "voluntad",
+                "value": 34
+            },
+            {
+                "name": "Y",
+                "value": 33
+            },
+            {
+                "name": "monumento",
+                "value": 32
+            },
+            {
+                "name": "hombre",
+                "value": 31
+            },
+            {
+                "name": "FIDEL,",
+                "value": 30
+            },
+            {
+                "name": "nombre",
+                "value": 30
+            },
+            {
+                "name": "si",
+                "value": 30
+            },
+            {
+                "name": "SIEMPRE",
+                "value": 29
+            },
+            {
+                "name": "obra",
+                "value": 26
+            },
+            {
+                "name": "vida",
+                "value": 26
+            },
+            {
+                "name": "él",
+                "value": 25
+            }
+        ]
+    }
+    return data
