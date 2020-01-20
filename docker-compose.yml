@@ -40,7 +40,7 @@ services:
       - REAL_PROCESS=1
 
   mongodb:
-    image: mongo:4.0.6
+    image: mongo:latest
     container_name: "prensamongodb"
     environment:
       - MONGO_DATA_DIR=/data/db
@@ -49,7 +49,7 @@ services:
       - prensamongodata:/data/db
     ports:
         - 27017:27017
-    command: mongod --wiredTigerCacheSizeGB=1
+    command: mongod --wiredTigerCacheSizeGB=0.5
     # --wiredTigerCacheSizeGB=n limit the amount of ram used to n
 
 volumes:

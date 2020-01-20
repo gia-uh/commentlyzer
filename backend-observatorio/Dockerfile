@@ -1,13 +1,13 @@
-FROM python:3.6.8 as backend
+FROM python:3.7.6 as backend
 RUN mkdir models
 RUN curl -L -o /models/cv.joblib \
-    https://github.com/giamatcom/CommenlyzerEngine/releases/download/v1.0.1/countvectorizer.joblib
+    https://github.com/giamatcom/CommenlyzerEngine/releases/download/v1.0.1/cv.joblib
 
 RUN curl -L -o /models/pnn.joblib \
-    https://github.com/giamatcom/CommenlyzerEngine/releases/download/v1.0.1/CountVectorizer.Positivo.-.Neutro.-.Negativo.+.LinearSVC.joblib
+    https://github.com/giamatcom/CommenlyzerEngine/releases/download/v1.0.1/pnn.joblib
 
 RUN curl -L -o /models/so.joblib \
-    https://github.com/giamatcom/CommenlyzerEngine/releases/download/v1.0.1/CountVectorizer.Objetivo.-.Subjetivo.+.RidgeClassifier.joblib
+    https://github.com/giamatcom/CommenlyzerEngine/releases/download/v1.0.1/so.joblib
 
 RUN mkdir /backend-observatorio
 WORKDIR /backend-observatorio
