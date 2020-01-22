@@ -33,7 +33,7 @@
 
 <script>
 import Peity from 'vue-peity';
-import {color_scheme} from '../main.js';
+import {color_scheme_pie} from '../main.js';
 //import VueChartkick from 'vue-chartkick'
 export default {
   components: {
@@ -49,7 +49,7 @@ export default {
         // { text: "Actions", value: "id", sortable: false }
       ],
       loading: false,
-      pcolors: { 'fill': color_scheme}
+      pcolors: { 'fill': color_scheme_pie}
     };
   },
   methods: {

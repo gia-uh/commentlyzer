@@ -200,7 +200,8 @@ def entities(id):
     ents = pipe_ents_detect(comments)
     entss = set()
     for i in ents:
-        if i:
+        i = i.strip()
+        if i and len(i)>=2 and not(i.lower() in stopwordsd) and re.match('[a-zA-Z]',i):
             entss.update(i)
     opinion = list(map(lambda x: x['opinion'], commentss))
     ress = [{'name': i,
@@ -208,7 +209,7 @@ def entities(id):
                     'Positivo': 0,
                     'Neutro': 0,
                     'Negativo': 0,
-                    'Objetivo': 0}} for i in entss if len(i)>=2 and not(i.lower() in stopwordsd) and re.match('[a-zA-Z]',i)]
+                    'Objetivo': 0}} for i in entss]
     for n,i in enumerate(comments):
         #i=Counter(i.split(' '))
         for j in ress:
@@ -244,7 +245,7 @@ def comments_wc(id):
     wordspol = {}
     for c, op in coms:
         for j in c.split(' '):
-            if not(j in stopwordsd):
+            if not(j.lower() in stopwordsd):
                 words[j]+=1
                 if j in wordspol:
                     wordspol[j][op]+=1

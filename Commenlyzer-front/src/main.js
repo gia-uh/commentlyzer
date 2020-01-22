@@ -20,6 +20,7 @@ Vue.use(VueMoment, {
 })
 
 export const color_scheme = ['red', 'green', 'gray','blue','orange'];
+export const color_scheme_pie = [color_scheme[3], color_scheme[0], color_scheme[4], color_scheme[1]];
 
 Vue.use(VueLodash) // options is optional
 import VueChartkick from 'vue-chartkick'
