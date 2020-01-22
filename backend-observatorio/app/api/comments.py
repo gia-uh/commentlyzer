@@ -200,9 +200,8 @@ def entities(id):
     ents = pipe_ents_detect(comments)
     entss = set()
     for i in ents:
-        i = i.strip()
-        if i and len(i)>=2 and not(i.lower() in stopwordsd) and re.match('[a-zA-Z]',i):
-            entss.update(i)
+        i = filter(lambda x: x and len(x)>=2 and not(x.lower() in stopwordsd) and re.match('[a-zA-Z]',x), i)
+        entss.update(i)
     opinion = list(map(lambda x: x['opinion'], commentss))
     ress = [{'name': i,
              'count':{ "total": 0,
