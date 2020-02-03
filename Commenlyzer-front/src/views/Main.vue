@@ -303,11 +303,9 @@
 
 <script>
 // eslint-disable-next-line
-import { baseUrl, eventBus, getdata, baseUrl2 } from "../main.js";
-
+import { baseUrl, eventBus, getdata, baseUrl2} from "../main.js";
 export default {
   name: "Main",
-
   data() {
     return {
       media: "",
@@ -328,6 +326,7 @@ export default {
       timeRoute: baseUrl + "/comments/time/",
       entitiesRoute: "/comments/entities/",
       wcRoute: "/comments/wrodcloud/",
+      wordcloudRoute: baseUrl2 + this.wcRoute+ this.$route.params.id,
       actual_route: window.location.href,
       myColors: ['#1f77b4', '#629fc9', '#94bedb', '#c9e0ef'],
       defaultWords: [ ]
@@ -413,15 +412,18 @@ export default {
 
         response.json().then(json => {
           this.defaultWords = json.words;
-          // escribir aqui lo de generar el arry de colores en base a lo que hay en wdata para cada palabra
+          this.myColors = [];
+          var i = 0;
+          while (i < this.defaultWords.length){
+            this.myColors.push(this.defaultWords[i].color);
+            i=i+1;
+          }
         });
       });
     },
 
     getmedio: function(med) {
-      //console.log("getmedio");
       if (med == "CubaDebate") {
-        //console.log(require('@/assets/cubadebate.png'));
         return require("@/assets/cubadebate.png");
       } else {
         return "";
@@ -482,4 +484,5 @@ p {
 .paddingl {
   padding-left: 2%;
 }
+
 </style>
