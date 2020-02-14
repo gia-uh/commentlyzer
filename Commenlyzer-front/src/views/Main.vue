@@ -229,9 +229,10 @@
             <v-card>
                 <wordcloud
                 :data="defaultWords"
-                nameKey="name"
-                valueKey="value"
-                :color="myColors">
+                nameKey="palabra"
+                valueKey="repeticiones"
+                :color="myColors"
+                :rotate="{from: 0, to: 0, numOfOrientation: 0 }">
                 </wordcloud>
             </v-card>
         </v-flex>
@@ -411,11 +412,13 @@ export default {
         }
 
         response.json().then(json => {
-          this.defaultWords = json.words;
+          var data = json.words;
+          this.defaultWords = [];
           this.myColors = [];
           var i = 0;
-          while (i < this.defaultWords.length){
-            this.myColors.push(this.defaultWords[i].color);
+          while (i < data.length){
+            this.myColors.push(data[i].color);
+            this.defaultWords.push({palabra: data[i].name, repeticiones: data[i].value});
             i=i+1;
           }
         });

@@ -30,7 +30,7 @@ Vue.use(VueChartkick, { adapter: Chart })
 Vue.config.productionTip = false
 Vue.component("entities", EntitiesTable)
 
-import wordcloud from 'vue-wordcloud'
+import wordcloud from './components/WordCloud.vue'
 Vue.component("wordcloud", wordcloud)
 
 const development = process.env.NODE_ENV === 'development';
