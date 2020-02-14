@@ -1,0 +1,10 @@
+version: "2"
+
+services:
+
+  server:
+
+    command: python /backend-observatorio/app.py
+
+    volumes:
+      - "./backend-observatorio:/backend-observatorio"
