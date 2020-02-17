@@ -230,7 +230,7 @@
                 <wordcloud
                 :data="defaultWords"
                 nameKey="palabra"
-                valueKey="repeticiones"
+                valueKey="Repeticiones"
                 :color="myColors"
                 :rotate="{from: 0, to: 0, numOfOrientation: 0 }">
                 </wordcloud>
@@ -418,7 +418,7 @@ export default {
           var i = 0;
           while (i < data.length){
             this.myColors.push(data[i].color);
-            this.defaultWords.push({palabra: data[i].name, repeticiones: data[i].value});
+            this.defaultWords.push({palabra: data[i].name, Repeticiones: data[i].value});
             i=i+1;
           }
         });

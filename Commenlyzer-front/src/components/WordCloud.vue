@@ -119,6 +119,7 @@ export default {
     this.chart = this.createChart()
     this.renderChart()
   },
+  /* eslint-disable */
   watch: {
     words: {
       handler: function (val, oldVal) {
@@ -229,7 +230,7 @@ export default {
                 tooltip.transition()
                     .duration(200)
                     .style("opacity", .7)
-                tooltip.html(nameKey + ': ' + d[nameKey] + "<br/>"  + valueKey + ': ' + d[valueKey])
+                tooltip.html(valueKey + ': ' + d[valueKey])
             })
             .on("mousemove", function(d) {
                 tooltip
@@ -242,9 +243,9 @@ export default {
                     .style("opacity", 0)
         });
       }
-      text.on('click', (d) => {
+      /*text.on('click', (d) => {
         wordClick(d[nameKey], d[valueKey], vm)
-      })
+      })*/
     },
     update () {
       const { words, layout, fontSizeScale, chart, valueKey } = this
@@ -258,6 +259,7 @@ export default {
     }
   }
 }
+/* eslint-enable */
 </script>
 
 
@@ -276,13 +278,13 @@ export default {
 }
 div.tooltip {
     position: absolute;
-    width: 140px;
-    height: 50px;
-    padding: 8px;
-    font: 18px Arial;
-    line-height: 24px;
-    color: red;
-    background: purple;
+    width: 145px;
+    height: 30px;
+    padding: 6px;
+    font: 16px Arial;
+    line-height: 20px;
+    color: white;
+    background: black;
     border: 0px;
     border-radius: 2px;
     pointer-events: none;
