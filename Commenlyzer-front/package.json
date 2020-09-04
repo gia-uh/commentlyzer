@@ -18,7 +18,7 @@
         "vue-chartkick": "^0.5.0",
         "vue-cli-plugin-moment": "^0.1.1",
         "vue-lodash": "^2.0.0",
-        "vue-moment": "^4.0.0",
+        "vue-moment": "^4.1.0",
         "vue-peity": "^0.5.0",
         "vue-router": "^3.0.1",
         "vue-social-sharing": "^2.3.3",
