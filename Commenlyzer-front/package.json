@@ -30,8 +30,8 @@
         "vue-resize-directive": "^1.0.0"
     },
     "devDependencies": {
-        "@vue/cli-plugin-eslint": "^3.0.3",
-        "@vue/cli-service": "^3.0.3",
+        "@vue/cli-plugin-eslint": "^5.0.8",
+        "@vue/cli-service": "^5.0.8",
         "vue-cli-plugin-vuetify": "^0.2.0",
         "vue-template-compiler": "^2.5.17"
     },
